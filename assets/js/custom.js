@@ -73,7 +73,7 @@
 
 	    // Hide the toTop button when the page loads.
 
-	    $("#toTop").css("display", "none");
+	    $("#toTop").hide();
 
 	    
 

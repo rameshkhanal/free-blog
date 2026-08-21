@@ -54,6 +54,9 @@ Fixed
 * Parent menu items could not be followed: their default was prevented on every screen size
 * The excerpt filter returned nothing in the admin, leaving the editor with no ellipsis
 * The tag and category counts in the sidebar, and the widget headings, had not been styled since WordPress moved widgets to blocks in 5.8
+* Every row in the sidebar drew two hairlines and stacked two lots of padding, because the 2018 rule for classic widget links and the new rule for block widget rows both applied. Rows are 47px now, not 70px, with one line each
+* The sidebar search button turned grey when WordPress moved widgets to blocks: the accent was only ever applied to the classic widget's input, not to the block widget's button
+* Back to top was a 3px/14px/7px/13px blob around a single chevron; it is a 44px square now
 
 Performance
 * Fonts are served from the theme instead of being fetched from Google on every page view

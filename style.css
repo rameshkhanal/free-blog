@@ -4196,12 +4196,6 @@ button[type="submit"],
     text-transform: uppercase;
 }
 
-.wp-block-search__button:hover,
-.wp-block-search__button:focus {
-    background-color: #128551;
-    color: #ffffff;
-}
-
 /*
  * The comment form's submit is the one control on the page a reader is being
  * asked to press, so it gets the accent rather than the grey.
@@ -4213,7 +4207,6 @@ button[type="submit"],
 
 .comment-form input[type="submit"]:hover,
 .comment-form input[type="submit"]:focus {
-    background-color: #2fa96f;
     color: #ffffff;
 }
 
@@ -5262,5 +5255,138 @@ p.site-title a {
     .main-menu-placeholder {
         display: none;
     }
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - sidebar and footer list rows
+   ==========================================================================
+
+   Two rules were landing on the same row.
+
+   The theme has styled "#secondary .widget ul li a" as a block with padding
+   and a bottom border since 2018, for the classic widgets. The block widgets
+   that replaced them in WordPress 5.8 nest that same link inside an <li> which
+   this release also gave padding and a bottom border - so every row in the
+   sidebar drew two hairlines about eleven pixels apart and stood 70px tall
+   where 44px was intended.
+
+   The row is the <li>. The link inside it is a link. The selectors below carry
+   ".widget_block" so they outrank the 2018 rule, which is what the first
+   attempt at this got wrong.
+   ========================================================================== */
+
+#secondary .widget_block ul li a,
+#left-sidebar .widget_block ul li a,
+.footer-top-box .widget_block ul li a {
+    display: inline;
+    padding: 0;
+    border: 0;
+}
+
+/*
+ * The last row sits directly on the panel's own bottom edge, which is a second
+ * line again. The theme removes it for the classic widgets; the block markup
+ * needs the same.
+ */
+#secondary .widget_block ul > li:last-child,
+#left-sidebar .widget_block ul > li:last-child,
+.footer-top-box .widget_block ul > li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* A nested category list keeps its own rows, so the hierarchy stays readable. */
+#secondary .widget_block ul li ul,
+#left-sidebar .widget_block ul li ul {
+    margin-top: 10px;
+    padding-left: 14px;
+}
+
+#secondary .widget_block ul li ul li:last-child,
+#left-sidebar .widget_block ul li ul li:last-child {
+    padding-bottom: 10px;
+}
+
+/*
+ * A recent-comments row is a sentence rather than a single link, so it takes
+ * the row treatment from the <li> and nothing from the anchors inside it.
+ */
+#secondary .wp-block-latest-comments__comment,
+#left-sidebar .wp-block-latest-comments__comment,
+.footer-top-box .wp-block-latest-comments__comment {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - search, reply and back-to-top buttons
+   ==========================================================================
+
+   The sidebar search submit has been accent-coloured since the theme shipped -
+   but only the classic widget's <input type="submit">. The block search widget
+   that replaced it uses a <button>, which fell through to the plain grey used
+   for secondary controls, so the one green button in the sidebar turned grey
+   the moment WordPress switched widgets to blocks.
+   ========================================================================== */
+
+button.wp-block-search__button {
+    color: #ffffff;
+    border: 0;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 11px 20px;
+    text-transform: uppercase;
+}
+
+button.wp-block-search__button:hover,
+button.wp-block-search__button:focus {
+    color: #ffffff;
+}
+
+/*
+ * Reply was a thin box of default black text, the only control on the page not
+ * wearing the theme's button.
+ */
+.comment-reply-link {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #dde4ec;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.comment-reply-link:hover,
+.comment-reply-link:focus {
+    border-color: #b9c6d4;
+}
+
+/*
+ * Back to top. The padding was 3px 14px 7px 13px - four different values, none
+ * of them square - around a single chevron, which made a target smaller than a
+ * fingertip and visibly off-centre.
+ */
+#toTop {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 44px;
+    text-align: center;
+}
+
+#toTop:hover,
+#toTop:focus {
+    color: #ffffff;
 }
 

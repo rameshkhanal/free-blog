@@ -41,6 +41,40 @@ if ( ! function_exists( 'free_blog_hex_to_rgba' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'free_blog_shade' ) ) :
+	/**
+	 * Darken a hex colour by a proportion.
+	 *
+	 * Used for the hover state of the accent-filled controls, so that it
+	 * follows the customizer rather than being fixed in the stylesheet.
+	 *
+	 * @param string $hex    Hex colour, with or without the leading hash.
+	 * @param float  $amount How far to move toward black, between 0 and 1.
+	 * @return string A hex colour, or an empty string if $hex is not one.
+	 */
+	function free_blog_shade( $hex, $amount = 0.18 ) {
+
+		$hex = ltrim( (string) $hex, '#' );
+
+		if ( 3 === strlen( $hex ) ) {
+			$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+		}
+
+		if ( ! preg_match( '/^[0-9a-fA-F]{6}$/', $hex ) ) {
+			return '';
+		}
+
+		$out = '#';
+
+		foreach ( array( 0, 2, 4 ) as $offset ) {
+			$channel = hexdec( substr( $hex, $offset, 2 ) );
+			$out    .= str_pad( dechex( (int) round( $channel * ( 1 - $amount ) ) ), 2, '0', STR_PAD_LEFT );
+		}
+
+		return $out;
+	}
+endif;
+
 if ( ! function_exists( 'free_blog_accent_selectors' ) ) :
 	/**
 	 * Every selector in style.css that is painted with the theme accent.
@@ -133,8 +167,7 @@ if ( ! function_exists( 'free_blog_accent_selectors' ) ) :
 				'#secondary .widget.widget_search form input[type="submit"]',
 				'#toTop',
 				'.comment-form input[type="submit"]',
-				'.wp-block-search__button:hover',
-				'.wp-block-search__button:focus',
+				'button.wp-block-search__button',
 
 				// The short rule under every widget heading, in all three widget
 				// areas and in both the classic and the block markup.
@@ -219,6 +252,17 @@ if ( ! function_exists( 'free_blog_dynamic_css' ) ) :
 					implode( ', ', $selectors ),
 					$property,
 					$free_blog_primary_color
+				);
+			}
+
+			// The accent-filled controls darken on hover, from the accent itself
+			// rather than from a colour fixed in the stylesheet.
+			$hover = free_blog_shade( $free_blog_primary_color );
+
+			if ( '' !== $hover ) {
+				$custom_css .= sprintf(
+					'button.wp-block-search__button:hover, button.wp-block-search__button:focus, .comment-form input[type="submit"]:hover, .comment-form input[type="submit"]:focus, #toTop:hover, #toTop:focus { background-color: %1$s; }',
+					$hover
 				);
 			}
 
