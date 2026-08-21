@@ -7,6 +7,28 @@
  * @package Free_Blog
  */
 
+if ( ! function_exists( 'free_blog_entry_kicker' ) ) :
+	/**
+	 * Print the post's categories above the headline.
+	 *
+	 * On a single post the entry footer still lists them, so this only runs
+	 * where the headline is competing with other headlines for attention.
+	 */
+	function free_blog_entry_kicker() {
+
+		if ( 'post' !== get_post_type() ) {
+			return;
+		}
+
+		$categories = get_the_category_list( '<span class="sep">, </span>' );
+
+		if ( ! $categories ) {
+			return;
+		}
+
+		printf( '<div class="entry-cats">%s</div>', wp_kses_post( $categories ) );
+	}
+endif;
 if ( ! function_exists( 'free_blog_posted_on' ) ) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
@@ -60,7 +82,7 @@ if ( ! function_exists( 'free_blog_entry_footer' ) ) :
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'free-blog' ) );
-			if ( $categories_list ) {
+			if ( $categories_list && is_singular() ) {
 				/* translators: 1: list of categories. */
 				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'free-blog' ) . '</span>', $categories_list ); // WPCS: XSS OK.
 			}

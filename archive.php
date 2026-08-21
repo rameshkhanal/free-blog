@@ -12,11 +12,11 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-			<?php 			 
+			<?php
 				//Breadcrumb hook
-			 	do_action('free_blog_breadcrumb_options_hook'); 
+			 	do_action('free_blog_breadcrumb_options_hook');
 			?>
-			
+
 
 		<?php if ( have_posts() ) : ?>
 
@@ -30,7 +30,7 @@ get_header();
 			<?php
 
 			/* Masonry Start Section */
-			do_action('free_blog_masonry_start_hook'); 
+			do_action('free_blog_masonry_start_hook');
 
 			/* Start the Loop */
 			while ( have_posts() ) :
@@ -62,7 +62,7 @@ get_header();
 
 		endif;
 		?>
-	
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

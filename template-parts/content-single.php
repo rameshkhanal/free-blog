@@ -10,13 +10,15 @@ $image_option = absint($free_blog_theme_options['free-blog-single-page-featured-
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="content-area">
-		<?php 
+		<?php
 			if( $image_option == 1 ){
-				free_blog_post_thumbnail(); 
+				free_blog_post_thumbnail();
 			}
 		?>
 		<header class="entry-header">
 			<?php
+			free_blog_entry_kicker();
+
 			if ( is_singular() ) :
 				the_title( '<h1 class="entry-title">', '</h1>' );
 			else :

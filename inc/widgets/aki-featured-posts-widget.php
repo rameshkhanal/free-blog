@@ -103,7 +103,7 @@ if (!class_exists('Free_Blog_Featured_Post')) :
                 'title' => esc_html__('Recent Posts', 'free-blog' ),
                 'post-number' => 5,
             );
-            
+
             $instance = wp_parse_args((array)$instance, $defaults);
             ?>
             <p>

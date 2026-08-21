@@ -40,24 +40,28 @@ if ( !function_exists('free_blog_default_theme_options_values') ) :
         	'free-blog-excerpt-length'=>25,
         	'free-blog-pagination-options'=>'numeric',
         	'free-blog-read-more-text'=> esc_html__('Read More','free-blog'),
-        	
+
             /*Single Page Default Value*/
         	'free-blog-single-page-featured-image'=> 1,
         	'free-blog-single-page-related-posts'=> 1,
         	'free-blog-single-page-related-posts-title'=> esc_html__('Related Posts','free-blog'),
-        	
+
             /*Sticky Sidebar Options*/
         	'free-blog-enable-sticky-sidebar'=> 1,
-        	
+
             /*Footer Section*/
-        	'free-blog-footer-copyright' =>  esc_html__('All Right Reserved 2022','free-blog'),
+        	'free-blog-footer-copyright' => sprintf(
+        		/* translators: %s: the current year. */
+        		esc_html__( 'All Rights Reserved %s', 'free-blog' ),
+        		date_i18n( 'Y' )
+        	),
         	'free-blog-go-to-top'=> 1,
-        	
+
             /*Font Options*/
-        	'free-blog-font-family-url'=> esc_url('//fonts.googleapis.com/css?family=Raleway:300,400,500,500i,600,700,800,900'),
-        	'free-blog-font-family-name'=> esc_html__('Raleway, sans-serif', 'free-blog'),
-        	'free-blog-font-paragraph-font-size'=>14,
-            
+        	'free-blog-font-family-url'=> '',
+        	'free-blog-font-family-name'=> 'Raleway, sans-serif',
+        	'free-blog-font-paragraph-font-size'=>16,
+
             /*Extra Options*/
             'free-blog-extra-breadcrumb'=> 1,
             'free-blog-breadcrumb-text'=>  esc_html__('You are Here','free-blog')
@@ -95,9 +99,9 @@ if ( !function_exists('free_blog_get_options_value') ) :
 
         $free_blog_default_theme_options_values = free_blog_default_theme_options_values();
 
-        
 
-    
+
+
 
         $free_blog_get_options_value = get_theme_mod( 'free_blog_options');
 
@@ -197,7 +201,7 @@ function free_blog_customize_register( $wp_customize ) {
 
         $wp_customize->add_control(
 
-            new WP_Customize_Color_Control(                 
+            new WP_Customize_Color_Control(
 
                 $wp_customize,
 
@@ -209,7 +213,7 @@ function free_blog_customize_register( $wp_customize ) {
 
                     'description' => esc_html__( 'Applied to main color of site.', 'free-blog' ),
 
-                    'section'     => 'colors',  
+                    'section'     => 'colors',
 
                 )
 
@@ -245,7 +249,7 @@ function free_blog_customize_register( $wp_customize ) {
 
 		        global $free_blog_theme_options;
 
-				$enable_header = absint($free_blog_theme_options['free_blog_enable_top_header']); 
+				$enable_header = absint($free_blog_theme_options['free_blog_enable_top_header']);
 
 		        if( 1 == $enable_header ){
 
@@ -431,7 +435,7 @@ function free_blog_customize_register( $wp_customize ) {
 
 		        global $free_blog_theme_options;
 
-				$enable_slider = absint($free_blog_theme_options['free_blog_enable_slider']); 
+				$enable_slider = absint($free_blog_theme_options['free_blog_enable_slider']);
 
 		        if( 1 == $enable_slider ){
 
@@ -989,7 +993,7 @@ function free_blog_customize_register( $wp_customize ) {
 
 		        global $free_blog_theme_options;
 
-				$related_posts = absint($free_blog_theme_options['free-blog-single-page-related-posts']); 
+				$related_posts = absint($free_blog_theme_options['free-blog-single-page-related-posts']);
 
 		        if( 1 == $related_posts ){
 
@@ -1213,16 +1217,11 @@ function free_blog_customize_register( $wp_customize ) {
 
             'label'     => __( 'URL of Font Family', 'free-blog' ),
 
-            'description' => sprintf('%1$s <a href="%2$s" target="_blank">%3$s</a> %4$s',
-
-		        		__( 'Insert', 'free-blog' ),
-
-		        		esc_url('https://www.google.com/fonts'),
-
-		        		__('Enter Google Font URL' , 'free-blog'),
-
-		        		__('to add google Font.' ,'free-blog')
-
+            'description' => sprintf(
+		        		/* translators: 1: opening link tag to Google Fonts, 2: closing link tag. */
+		        		__( 'The theme already loads its own fonts from your server. Leave this empty unless you want an extra family: paste a %1$sGoogle Fonts%2$s stylesheet URL to load one. Doing so will contact Google on every page view.', 'free-blog' ),
+		        		'<a href="' . esc_url( 'https://fonts.google.com/' ) . '" target="_blank" rel="noopener noreferrer">',
+		        		'</a>'
 		    ),
 
             'section'   => 'free_blog_font_options',

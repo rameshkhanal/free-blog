@@ -11,13 +11,13 @@ get_header();
 <div id="primary" class="content-area">
 	<main id="main" class="site-main">
 		<div class="breadcrumbs">
-			<?php 
+			<?php
 
 			//Breadcrumb hook
-			 do_action('free_blog_breadcrumb_options_hook'); 
+			 do_action('free_blog_breadcrumb_options_hook');
 			?>
 		</div>
-		
+
 			<?php
 
 			while ( have_posts() ) :
@@ -25,7 +25,14 @@ get_header();
 
 				get_template_part( 'template-parts/content', 'single' );
 
-				the_post_navigation();
+				// Without labels the two links are just two post titles in
+				// grey boxes, with nothing to say which way each one goes.
+				the_post_navigation(
+					array(
+						'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous post', 'free-blog' ) . '</span> <span class="nav-title">%title</span>',
+						'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next post', 'free-blog' ) . '</span> <span class="nav-title">%title</span>',
+					)
+				);
 
 			/**
              * free_blog_related_posts hook

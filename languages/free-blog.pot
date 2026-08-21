@@ -1,0 +1,943 @@
+# Copyright (C) 2026 akithemes
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Free Blog 1.1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/free-blog\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-21T18:35:55+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: free-blog\n"
+
+#. Theme Name of the theme
+#: style.css
+#: inc/block-patterns.php:28
+msgid "Free Blog"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://www.templatesell.com/item/free-blog-plus/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "A Post Format Ready WordPress theme. Free Blog is simple, clean and elegant Free WordPress Theme for your blog site. This theme comes with slider, masonry layout, double column,copyright options and social options and many more features. In addition this theme has added custom widget for recent post, author and social menu. Use this awesome WordPress theme for your blog site, you will never look for alternative. Demo: http://demo.akithemes.com/free-blog"
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "akithemes"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://www.templatesell.com/"
+msgstr ""
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:23
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr ""
+
+#: 404.php:44
+msgid "Most Used Categories"
+msgstr ""
+
+#. translators: %1$s: smiley
+#: 404.php:60
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr ""
+
+#. translators: 1: title.
+#: comments.php:35
+#, php-format
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#. translators: 1: comment count number, 2: title.
+#: comments.php:41
+#, php-format
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:66
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:67
+msgid "https://wordpress.org/"
+msgstr ""
+
+#. translators: %s: CMS name, i.e. WordPress.
+#: footer.php:70
+#, php-format
+msgid "Proudly powered by %s"
+msgstr ""
+
+#. translators: 1: Theme name, 2: Theme author.
+#: footer.php:76
+#, php-format
+msgid "Theme: %1$s by %2$s."
+msgstr ""
+
+#: functions.php:61
+msgid "Primary"
+msgstr ""
+
+#: functions.php:62
+msgid "Top Header"
+msgstr ""
+
+#: functions.php:63
+msgid "Social Icons"
+msgstr ""
+
+#: functions.php:154
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:156
+#: functions.php:166
+#: functions.php:176
+#: functions.php:186
+#: functions.php:196
+#: functions.php:206
+msgid "Add widgets here."
+msgstr ""
+
+#: functions.php:164
+#: inc/customizer.php:688
+msgid "Left Sidebar"
+msgstr ""
+
+#: functions.php:174
+msgid "Footer One"
+msgstr ""
+
+#: functions.php:184
+msgid "Footer Two"
+msgstr ""
+
+#: functions.php:194
+msgid "Footer Three"
+msgstr ""
+
+#: functions.php:204
+msgid "Footer Four"
+msgstr ""
+
+#: functions.php:272
+msgid "Expand child menu"
+msgstr ""
+
+#: functions.php:287
+#: inc/custom-functions.php:211
+msgid "View More"
+msgstr ""
+
+#: functions.php:288
+msgid "No More"
+msgstr ""
+
+#: header.php:36
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:41
+msgid "Secondary menu"
+msgstr ""
+
+#: header.php:44
+#: header.php:123
+msgid "Menu"
+msgstr ""
+
+#: header.php:69
+msgid "Search"
+msgstr ""
+
+#: header.php:120
+msgid "Primary menu"
+msgstr ""
+
+#: inc/block-patterns.php:35
+msgid "Standfirst and body"
+msgstr ""
+
+#: inc/block-patterns.php:36
+msgid "An opening paragraph set larger than the body text, followed by the first section of the article."
+msgstr ""
+
+#: inc/block-patterns.php:39
+msgid "Open with the sentence a reader would repeat to someone else. One or two lines, no throat-clearing, and the rest of the piece has somewhere to go."
+msgstr ""
+
+#: inc/block-patterns.php:42
+msgid "Then the article proper begins. Keep paragraphs short enough to scan and long enough to say something."
+msgstr ""
+
+#: inc/block-patterns.php:50
+msgid "Two columns with headings"
+msgstr ""
+
+#: inc/block-patterns.php:51
+msgid "Two side-by-side columns, each with a subheading, for comparing two things."
+msgstr ""
+
+#: inc/block-patterns.php:55
+msgid "What it does well"
+msgstr ""
+
+#: inc/block-patterns.php:56
+msgid "Describe the first side here."
+msgstr ""
+
+#: inc/block-patterns.php:59
+msgid "Where it falls short"
+msgstr ""
+
+#: inc/block-patterns.php:60
+msgid "And the second side here."
+msgstr ""
+
+#: inc/block-patterns.php:69
+msgid "Quotation break"
+msgstr ""
+
+#: inc/block-patterns.php:70
+msgid "A quotation with attribution, set between two sections of an article."
+msgstr ""
+
+#: inc/block-patterns.php:74
+msgid "A quotation earns its place by saying something in a voice the article cannot borrow."
+msgstr ""
+
+#: inc/block-patterns.php:76
+msgid "Name, role"
+msgstr ""
+
+#: inc/block-patterns.php:98
+msgid "Lead paragraph"
+msgstr ""
+
+#: inc/block-patterns.php:106
+msgid "Boxed note"
+msgstr ""
+
+#: inc/block-patterns.php:114
+msgid "Ruled list"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:244
+msgid "You Are Here"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:245
+msgctxt "breadcrumbs aria label"
+msgid "Breadcrumbs"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:246
+msgid "Home"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:247
+msgid "404 Not Found"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:248
+msgid "Archives"
+msgstr ""
+
+#. Translators: %s is the search query. The HTML entities are opening and closing curly quotes.
+#: inc/breadcrumbs/breadcrumbs.php:250
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#. Translators: %s is the page number.
+#: inc/breadcrumbs/breadcrumbs.php:252
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#. Translators: Minute archive title. %s is the minute time format.
+#: inc/breadcrumbs/breadcrumbs.php:254
+#, php-format
+msgid "Minute %s"
+msgstr ""
+
+#. Translators: Weekly archive title. %s is the week date format.
+#: inc/breadcrumbs/breadcrumbs.php:256
+#, php-format
+msgid "Week %s"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:708
+msgctxt "minute and hour archives time format"
+msgid "g:i a"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:725
+msgctxt "minute archives time format"
+msgid "i"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:742
+msgctxt "hour archives time format"
+msgid "g a"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:758
+#: inc/breadcrumbs/breadcrumbs.php:787
+#: inc/breadcrumbs/breadcrumbs.php:814
+#: inc/breadcrumbs/breadcrumbs.php:841
+#: inc/breadcrumbs/breadcrumbs.php:1176
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:759
+#: inc/breadcrumbs/breadcrumbs.php:815
+#: inc/breadcrumbs/breadcrumbs.php:1180
+msgctxt "monthly archives date format"
+msgid "F"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:760
+#: inc/breadcrumbs/breadcrumbs.php:1184
+msgctxt "daily archives date format"
+msgid "j"
+msgstr ""
+
+#: inc/breadcrumbs/breadcrumbs.php:788
+msgctxt "weekly archives date format"
+msgid "W"
+msgstr ""
+
+#: inc/custom-functions.php:192
+msgid "&laquo; Prev"
+msgstr ""
+
+#: inc/custom-functions.php:193
+msgid "Next &raquo;"
+msgstr ""
+
+#: inc/custom-functions.php:199
+msgid "Posts navigation"
+msgstr ""
+
+#: inc/custom-functions.php:318
+msgid "Back to top"
+msgstr ""
+
+#: inc/custom-functions.php:393
+msgid "Breadcrumb"
+msgstr ""
+
+#: inc/customizer-category-control.php:22
+msgid "&mdash; Select Category &mdash;"
+msgstr ""
+
+#: inc/customizer-pro/class-customize.php:76
+msgid "Premium Verison"
+msgstr ""
+
+#: inc/customizer-pro/class-customize.php:77
+msgid "Upgrade To Pro"
+msgstr ""
+
+#: inc/customizer.php:33
+#: inc/customizer.php:42
+msgid "Read More"
+msgstr ""
+
+#: inc/customizer.php:47
+msgid "Related Posts"
+msgstr ""
+
+#. translators: %s: the current year.
+#: inc/customizer.php:55
+#, php-format
+msgid "All Rights Reserved %s"
+msgstr ""
+
+#: inc/customizer.php:67
+msgid "You are Here"
+msgstr ""
+
+#: inc/customizer.php:182
+msgid "Theme Options"
+msgstr ""
+
+#: inc/customizer.php:212
+msgid "Primary Color"
+msgstr ""
+
+#: inc/customizer.php:214
+msgid "Applied to main color of site."
+msgstr ""
+
+#: inc/customizer.php:236
+msgid "Header"
+msgstr ""
+
+#: inc/customizer.php:290
+msgid "Enable Top Header"
+msgstr ""
+
+#: inc/customizer.php:292
+msgid "Checked to show the top header section like search and social icons"
+msgstr ""
+
+#: inc/customizer.php:324
+msgid "Enable Social Icons"
+msgstr ""
+
+#: inc/customizer.php:326
+msgid "You can show the social icons here. Manage social icons from Appearance > Menus. Social Menu will display here."
+msgstr ""
+
+#: inc/customizer.php:360
+msgid "Enable Search Icons"
+msgstr ""
+
+#: inc/customizer.php:362
+msgid "You can show the search field in header."
+msgstr ""
+
+#: inc/customizer.php:394
+msgid "Menu in Header"
+msgstr ""
+
+#: inc/customizer.php:396
+msgid "Top Header Menu will display here. Go to Appearance < Menu."
+msgstr ""
+
+#: inc/customizer.php:422
+msgid "Slider"
+msgstr ""
+
+#: inc/customizer.php:476
+msgid "Enable Slider"
+msgstr ""
+
+#: inc/customizer.php:478
+msgid "Checked to Enable Slider In Home Page. Make sure header image is not set to display the slider"
+msgstr ""
+
+#: inc/customizer.php:516
+msgid "Select Category For Slider"
+msgstr ""
+
+#: inc/customizer.php:518
+msgid "From the dropdown select the category for the slider. Category having post will display in below dropdown."
+msgstr ""
+
+#: inc/customizer.php:554
+msgid "Number of Slides "
+msgstr ""
+
+#: inc/customizer.php:556
+msgid "Select the number of slide. Maximum slide is 5 and minium 1"
+msgstr ""
+
+#: inc/customizer.php:598
+msgid "Read More Text "
+msgstr ""
+
+#: inc/customizer.php:600
+msgid "Enter the text for Read More"
+msgstr ""
+
+#: inc/customizer.php:632
+msgid "Enable Next Sliders Posts "
+msgstr ""
+
+#: inc/customizer.php:634
+msgid "You can enable and disable the slider next slider recommendation which is appear above the slider"
+msgstr ""
+
+#: inc/customizer.php:660
+msgid "Blog Page"
+msgstr ""
+
+#: inc/customizer.php:686
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/customizer.php:690
+msgid "No Sidebar"
+msgstr ""
+
+#: inc/customizer.php:692
+msgid "Middle Column"
+msgstr ""
+
+#: inc/customizer.php:694
+msgid "Both Sidebar"
+msgstr ""
+
+#: inc/customizer.php:700
+msgid "Select the preferred sidebar"
+msgstr ""
+
+#: inc/customizer.php:702
+msgid "This sidebar will work for all Pages"
+msgstr ""
+
+#: inc/customizer.php:734
+msgid "Single"
+msgstr ""
+
+#: inc/customizer.php:736
+msgid "Masonry"
+msgstr ""
+
+#: inc/customizer.php:740
+msgid "Blog Layout Column"
+msgstr ""
+
+#: inc/customizer.php:742
+msgid "You can change the blog page and archive page layouts"
+msgstr ""
+
+#: inc/customizer.php:774
+msgid "Excerpt"
+msgstr ""
+
+#: inc/customizer.php:776
+msgid "Content"
+msgstr ""
+
+#: inc/customizer.php:778
+msgid "Hide"
+msgstr ""
+
+#: inc/customizer.php:782
+msgid "Select Content Display Option"
+msgstr ""
+
+#: inc/customizer.php:784
+msgid "You can enable excerpt from Screen Options inside post section of dashboard"
+msgstr ""
+
+#: inc/customizer.php:814
+msgid "Size of Excerpt Content"
+msgstr ""
+
+#: inc/customizer.php:816
+msgid "Enter the number per Words to show the content in blog page."
+msgstr ""
+
+#: inc/customizer.php:848
+msgid "Default"
+msgstr ""
+
+#: inc/customizer.php:850
+msgid "Numeric"
+msgstr ""
+
+#: inc/customizer.php:852
+msgid "Ajax Pagination"
+msgstr ""
+
+#: inc/customizer.php:854
+msgid "Hide Pagination"
+msgstr ""
+
+#: inc/customizer.php:858
+msgid "Pagination Types"
+msgstr ""
+
+#: inc/customizer.php:860
+msgid "Select the Required Pagination Type"
+msgstr ""
+
+#: inc/customizer.php:890
+msgid "Enter Read More Text"
+msgstr ""
+
+#: inc/customizer.php:892
+msgid "Read more text for blog and archive page."
+msgstr ""
+
+#: inc/customizer.php:916
+msgid "Single Page"
+msgstr ""
+
+#: inc/customizer.php:940
+msgid "Enable Featured Image"
+msgstr ""
+
+#: inc/customizer.php:942
+msgid "You can hide or show featured image on single page."
+msgstr ""
+
+#: inc/customizer.php:972
+msgid "Enable Related Posts"
+msgstr ""
+
+#: inc/customizer.php:974
+msgid "3 Post from similar category will display at the end of the page."
+msgstr ""
+
+#: inc/customizer.php:1032
+msgid "Related Posts Title"
+msgstr ""
+
+#: inc/customizer.php:1034
+msgid "Give the appropriate title for related posts"
+msgstr ""
+
+#: inc/customizer.php:1060
+msgid "Sticky Sidebar"
+msgstr ""
+
+#: inc/customizer.php:1084
+msgid "Enable Sticky Sidebar"
+msgstr ""
+
+#: inc/customizer.php:1086
+msgid "Enable and Disable sticky sidebar from this section."
+msgstr ""
+
+#: inc/customizer.php:1110
+msgid "Footer"
+msgstr ""
+
+#: inc/customizer.php:1134
+msgid "Copyright Text"
+msgstr ""
+
+#: inc/customizer.php:1136
+msgid "Enter your own copyright text."
+msgstr ""
+
+#: inc/customizer.php:1166
+msgid "Enable Go to Top"
+msgstr ""
+
+#: inc/customizer.php:1168
+msgid "Checked to Enable Go to Top"
+msgstr ""
+
+#: inc/customizer.php:1194
+msgid "Fonts"
+msgstr ""
+
+#: inc/customizer.php:1218
+msgid "URL of Font Family"
+msgstr ""
+
+#. translators: 1: opening link tag to Google Fonts, 2: closing link tag.
+#: inc/customizer.php:1222
+#, php-format
+msgid "The theme already loads its own fonts from your server. Leave this empty unless you want an extra family: paste a %1$sGoogle Fonts%2$s stylesheet URL to load one. Doing so will contact Google on every page view."
+msgstr ""
+
+#: inc/customizer.php:1253
+msgid "Font Name"
+msgstr ""
+
+#: inc/customizer.php:1255
+msgid "Add Font Name here, Example: Barlow Semi Condensed, sans-serif"
+msgstr ""
+
+#: inc/customizer.php:1283
+msgid "Paragraph Font Size"
+msgstr ""
+
+#: inc/customizer.php:1285
+msgid "Size apply only for paragraphs, not headings. "
+msgstr ""
+
+#: inc/customizer.php:1319
+msgid "Extras"
+msgstr ""
+
+#: inc/customizer.php:1343
+msgid "Enable Breadcrumb"
+msgstr ""
+
+#: inc/customizer.php:1345
+msgid "Breadcrumb will appear on all pages except home page"
+msgstr ""
+
+#: inc/customizer.php:1375
+msgid "Breadcrumb Text"
+msgstr ""
+
+#: inc/customizer.php:1377
+msgid "Write your own text in place of You are Here"
+msgstr ""
+
+#. translators: %s: name of the active theme.
+#: inc/getting-started.php:60
+#, php-format
+msgid "Welcome! Thank you for choosing %s. To take full advantage of what the theme can do, get started below."
+msgstr ""
+
+#: inc/getting-started.php:66
+msgid "Getting started will install and activate Advanced Import and Aki Toolset."
+msgstr ""
+
+#. translators: %s: name of the active theme.
+#: inc/getting-started.php:73
+#, php-format
+msgid "Get started with %s"
+msgstr ""
+
+#: inc/getting-started.php:110
+msgid "Sorry, you are not allowed to install plugins on this site."
+msgstr ""
+
+#: inc/getting-started.php:193
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr ""
+
+#. translators: %s: post date.
+#: inc/template-tags.php:51
+#, php-format
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr ""
+
+#. translators: %s: post author.
+#: inc/template-tags.php:67
+#, php-format
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:84
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: inc/template-tags.php:87
+#, php-format
+msgid "Posted in %1$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:91
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: inc/template-tags.php:94
+#, php-format
+msgid "Tagged %1$s"
+msgstr ""
+
+#. translators: %s: post title
+#: inc/template-tags.php:104
+#, php-format
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: inc/template-tags.php:121
+#: template-parts/content-page.php:43
+#, php-format
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:27
+msgid "Display Author Profile."
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:29
+msgid "Free Blog Author"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:98
+msgid "facebook"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:105
+msgid "twitter"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:112
+msgid "linkedin"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:119
+msgid "instagram"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:126
+msgid "pinterest"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:133
+msgid "youtube"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:140
+msgid "vk"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:240
+#: inc/widgets/aki-featured-posts-widget.php:111
+#: inc/widgets/aki-post-slider-widget.php:105
+#: inc/widgets/aki-social-widget.php:74
+msgid "Title:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:248
+msgid "Description:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:256
+msgid "Select Image: Recommended size 250*250"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:274
+msgid "Upload Image"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:279
+msgid "Facebook:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:288
+msgid "Twitter:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:297
+msgid "LinkedIn:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:306
+msgid "Instagram:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:315
+msgid "Pinterest:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:324
+msgid "Youtube:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:333
+msgid "VK:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:342
+msgid "Author Sign Text:"
+msgstr ""
+
+#: inc/widgets/aki-author-widget.php:375
+msgid "Processing..."
+msgstr ""
+
+#: inc/widgets/aki-featured-posts-widget.php:21
+msgid "Displays Featured Post in Home Page. Place it in Home Widget Area Top."
+msgstr ""
+
+#: inc/widgets/aki-featured-posts-widget.php:24
+msgid "Free Blog Featured Post"
+msgstr ""
+
+#: inc/widgets/aki-featured-posts-widget.php:103
+#: inc/widgets/aki-post-slider-widget.php:97
+msgid "Recent Posts"
+msgstr ""
+
+#: inc/widgets/aki-featured-posts-widget.php:118
+#: inc/widgets/aki-post-slider-widget.php:112
+msgid "Select Category: "
+msgstr ""
+
+#: inc/widgets/aki-featured-posts-widget.php:129
+#: inc/widgets/aki-post-slider-widget.php:123
+msgid "Show Recent Posts"
+msgstr ""
+
+#: inc/widgets/aki-featured-posts-widget.php:137
+#: inc/widgets/aki-post-slider-widget.php:131
+msgid "Number of Posts to Display:"
+msgstr ""
+
+#: inc/widgets/aki-post-slider-widget.php:21
+msgid "Display post in Slider Form. Suitable on Sidebars."
+msgstr ""
+
+#: inc/widgets/aki-post-slider-widget.php:24
+msgid "Free Blog Post Slider"
+msgstr ""
+
+#: inc/widgets/aki-social-widget.php:23
+msgid "Social Menu Widget"
+msgstr ""
+
+#: inc/widgets/aki-social-widget.php:25
+msgid "Free Blog Social"
+msgstr ""
+
+#: inc/widgets/aki-social-widget.php:82
+msgid "Please create social menu and assign it."
+msgstr ""
+
+#. translators: %s: search query.
+#: search.php:27
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: single.php:32
+msgid "Previous post"
+msgstr ""
+
+#: single.php:33
+msgid "Next post"
+msgstr ""
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr ""
+
+#. translators: 1: link to WP admin new post page.
+#: template-parts/content-none.php:24
+#, php-format
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:37
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:44
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:29
+#: template-parts/content-single.php:57
+#: template-parts/content.php:57
+msgid "Pages:"
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: template-parts/content-single.php:44
+#, php-format
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""

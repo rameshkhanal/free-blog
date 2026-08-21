@@ -4,10 +4,10 @@ Theme URI: https://www.templatesell.com/item/free-blog-plus/
 Author: akithemes
 Author URI: https://www.templatesell.com/
 Description: A Post Format Ready WordPress theme. Free Blog is simple, clean and elegant Free WordPress Theme for your blog site. This theme comes with slider, masonry layout, double column,copyright options and social options and many more features. In addition this theme has added custom widget for recent post, author and social menu. Use this awesome WordPress theme for your blog site, you will never look for alternative. Demo: http://demo.akithemes.com/free-blog
-Version: 1.1.0
-Requires at least: 4.8
-Tested up to: 6.0
-Requires PHP: 5.4
+Version: 1.1.1
+Requires at least: 6.0
+Tested up to: 7.1
+Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: free-blog
@@ -2017,8 +2017,8 @@ blockquote cite {
     letter-spacing: 0.5px;
 }
 
+/* The date is set in grey by the design refresh layer; see the note there. */
 .entry-meta .posted-on a {
-    color: #3ccb89;
     margin: 0 7px;
 }
 
@@ -2361,6 +2361,31 @@ table>thead>tr>th {
 
 .header-slider .slider-items {
     position: relative;
+    min-height: 420px;
+    background-color: #2b3038;
+    background-image: linear-gradient(135deg, #333942 0%, #22262c 100%);
+    overflow: hidden;
+}
+
+.header-slider .slider-items .img-holder img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+/*
+ * White captions have to survive a bright photograph as well as a dark one.
+ */
+.header-slider .slider-items .img-holder:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.55) 100%);
+    z-index: 10;
 }
 
 .header-slider .slider-items .caption {
@@ -2407,9 +2432,12 @@ bottom: 0;
     margin-top: -10px;
 }
 
+/*
+ * Deliberately empty of sizing: slick sets the track width and transform
+ * itself, and overriding one without the other moves the strip off-screen.
+ */
 .header-slider-thumbnail .slick-track {
-    display: flex;
-    width: 100%!important;
+    display: block;
 }
 
 .header-slider-thumbnail .slick-slide {
@@ -2417,7 +2445,6 @@ bottom: 0;
     border-right-color: transparent;
     border-top: 0;
     padding: 26px 28px;
-    flex-grow: 1;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     background: #fff;
@@ -2782,7 +2809,8 @@ figure.author img {
     float: left;
 }
 
-.featured-desc h2 {
+.featured-desc h2,
+.featured-desc h3 {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 16px;
@@ -3912,3 +3940,1250 @@ PAGE HEADER
         width: 100%;
     }
 }
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - controls, focus and blocks
+   ========================================================================== */
+
+/*
+ * Three controls in this theme were styled as text or as divs and have now been
+ * given the elements they always behaved like - a search toggle, a submenu
+ * toggle and the "View More" button. A button carries a browser default border,
+ * background and font that would show through the existing styling, so each one
+ * is reset back to what the design already draws.
+ */
+.search-wrapper .search-toggle {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    line-height: 57px;
+    cursor: pointer;
+}
+
+.navbar-nav .dropdown-btn {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+button.show-more {
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+/*
+ * The "Read More" control was #bababa on #f5f5f5 - a contrast ratio of about
+ * 1.9:1, where the minimum for text is 4.5:1. It reads as a disabled button
+ * rather than the main call to action on every post in the list.
+ */
+.read-more a {
+    background-color: #eceef0;
+    color: #454f5c;
+}
+
+/*
+ * Post meta was #bfbfbf on white, which is 2.2:1. Dates and author names are
+ * small and uppercase, which makes low contrast worse, not better.
+ */
+.entry-meta,
+.entry-footer,
+.related-date,
+.posted-on,
+.byline {
+    color: #6b7480;
+}
+
+/*
+ * Keyboard focus was switched off wholesale by "outline: none" on every link,
+ * which leaves someone navigating by keyboard with no idea where they are. The
+ * accent-coloured glow that goes with this comes from the customizer, so it
+ * follows whatever colour the site owner picked; this is the outline underneath
+ * it, which stays visible on any background.
+ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid #2c3542;
+    outline-offset: 2px;
+}
+
+.skip-link:focus {
+    background-color: #ffffff;
+    color: #2c3542;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    left: 6px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 7px;
+    width: auto;
+    z-index: 100000;
+    clip: auto !important;
+    clip-path: none;
+    height: auto;
+}
+
+/*
+ * Submenus opened on :hover alone, so a keyboard could reach a parent item and
+ * nothing underneath it. .focus is set by js/navigation.js for browsers without
+ * :focus-within.
+ */
+.menu-item-has-children:focus-within > .sub-menu,
+.menu-item-has-children.focus > .sub-menu {
+    visibility: visible;
+    opacity: 1;
+    top: 100%;
+}
+
+.menu-item-has-children .sub-menu .menu-item-has-children:focus-within > .sub-menu,
+.menu-item-has-children .sub-menu .menu-item-has-children.focus > .sub-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*
+ * Since WordPress 5.8 a widget is a block, and a block widget's heading is an
+ * <h2 class="wp-block-heading"> - not the <h2 class="widget-title"> the theme
+ * has been styling since 2018. Every sidebar and footer heading on a modern
+ * install has been falling back to the browser default.
+ */
+.footer-top-box .widget_block h2,
+#secondary .widget_block h2,
+#left-sidebar .widget_block h2,
+.footer-top-box .wp-block-heading,
+#secondary .wp-block-heading,
+#left-sidebar .wp-block-heading {
+    position: relative;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #2c3542;
+}
+
+.footer-top-box .widget_block h2:after,
+#secondary .widget_block h2:after,
+#left-sidebar .widget_block h2:after,
+.footer-top-box .wp-block-heading:after,
+#secondary .wp-block-heading:after,
+#left-sidebar .wp-block-heading:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #3ccb89;
+}
+
+/* The footer sits on a dark panel, so its headings need the opposite colour. */
+.footer-top-box .widget_block h2,
+.footer-top-box .wp-block-heading {
+    color: #ffffff;
+}
+
+#secondary .wp-block-latest-posts li,
+#secondary .wp-block-latest-comments li,
+#secondary .wp-block-categories li,
+#secondary .wp-block-archives li,
+#left-sidebar .wp-block-latest-posts li,
+#left-sidebar .wp-block-latest-comments li,
+#left-sidebar .wp-block-categories li,
+#left-sidebar .wp-block-archives li {
+    list-style: none;
+}
+
+#secondary .wp-block-latest-posts,
+#secondary .wp-block-latest-comments,
+#secondary .wp-block-categories,
+#secondary .wp-block-archives,
+#left-sidebar .wp-block-latest-posts,
+#left-sidebar .wp-block-latest-comments,
+#left-sidebar .wp-block-categories,
+#left-sidebar .wp-block-archives {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/*
+ * Block styles registered in inc/block-patterns.php.
+ */
+.is-style-free-blog-lead {
+    font-size: 1.2em;
+    line-height: 1.7;
+    color: #2c3542;
+}
+
+.is-style-free-blog-boxed {
+    background: #f7f8f8;
+    border-left: 3px solid #3ccb89;
+    padding: 18px 20px;
+}
+
+.is-style-free-blog-plain-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.is-style-free-blog-plain-list li {
+    border-bottom: 1px solid #eaedf1;
+    padding: 8px 0;
+}
+
+/*
+ * Someone who has asked their operating system to reduce motion should not be
+ * given a five hundred millisecond slide on every menu and a fading carousel.
+ */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *:before,
+    *:after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - buttons and related posts
+   ========================================================================== */
+
+/*
+ * Every button in the theme was #bababa on #f5f5f5 - about 1.9:1, where 4.5:1
+ * is the floor for text. "Post Comment", "Read More", "View More" and the post
+ * navigation all read as disabled controls. The hover state already turns the
+ * accent colour, so this is only about the resting state being legible.
+ */
+.button,
+.show-more,
+button.show-more,
+input[type="submit"],
+button[type="submit"],
+.read-more a,
+.nav-links .nav-previous > a,
+.nav-links .nav-next > a,
+.wp-block-search__button {
+    background-color: #eceef0;
+    color: #454f5c;
+}
+
+.wp-block-search__button {
+    border: 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 10px 16px;
+    text-transform: uppercase;
+}
+
+.wp-block-search__button:hover,
+.wp-block-search__button:focus {
+    background-color: #3ccb89;
+    color: #ffffff;
+}
+
+/*
+ * The comment form's submit is the one control on the page a reader is being
+ * asked to press, so it gets the accent rather than the grey.
+ */
+.comment-form input[type="submit"] {
+    background-color: #3ccb89;
+    color: #ffffff;
+}
+
+.comment-form input[type="submit"]:hover,
+.comment-form input[type="submit"]:focus {
+    background-color: #2fa96f;
+    color: #ffffff;
+}
+
+/*
+ * Related posts.
+ *
+ * .featured-desc was floated at 50% width while the thumbnail beside it had no
+ * rules at all, so an entry with a picture and an entry without laid out
+ * differently and a portrait image ran to whatever height it liked. Two equal
+ * columns, one image ratio, and an entry with no picture simply starts with its
+ * headline instead of leaving a hole.
+ */
+/*
+ * The list carries the .clear class, whose :before and :after
+ * clearfix rules become grid items in a grid container - two invisible cells
+ * that pushed the first entry into the second column and the second entry onto
+ * a row of its own. A grid needs no clearfix.
+ */
+.related-post-entries:before,
+.related-post-entries:after {
+    content: none;
+}
+
+.related-post-entries {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.related-post-entries li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    float: none;
+}
+
+.related-post-entries .widget-image {
+    margin: 0 0 12px;
+}
+
+.related-post-entries .widget-image img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.related-post-entries .featured-desc {
+    float: none;
+    width: 100%;
+    padding: 0;
+}
+
+.related-post-entries .featured-desc h3 {
+    margin-bottom: 6px;
+}
+
+.related-post-entries .related-date {
+    margin-right: 0;
+}
+
+@media (max-width: 600px) {
+
+    .related-post-entries {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*
+ * The slick arrows on the thumbnail strip sat half outside the viewport at each
+ * edge, because slick positions them relative to a container the strip does not
+ * give them. They are a keyboard route through the slides, so they are worth
+ * keeping - just inside the strip, where they can be seen.
+ */
+.header-slider-thumbnail .slick-prev,
+.header-slider-thumbnail .slick-next {
+    z-index: 20;
+    width: 34px;
+    height: 34px;
+}
+
+.header-slider-thumbnail .slick-prev {
+    left: 10px;
+}
+
+.header-slider-thumbnail .slick-next {
+    right: 10px;
+}
+
+.header-slider-thumbnail .slick-dots {
+    position: static;
+    padding: 12px 0 0;
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - 404, post navigation, slider on small screens
+   ========================================================================== */
+
+/*
+ * Every other template puts its content on a white panel. The 404 page sat
+ * directly on the grey page background with browser-default headings, so the
+ * one page a visitor reaches by accident was the one that looked broken.
+ */
+.error-404 {
+    background-color: #ffffff;
+    margin-top: 30px;
+    padding: 30px;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.error-404 .page-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.error-404 .widget {
+    margin-top: 30px;
+}
+
+.error-404 .widget-title {
+    position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #2c3542;
+}
+
+.error-404 .widget-title:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #3ccb89;
+}
+
+.error-404 .widget ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.error-404 .widget ul li {
+    border-bottom: 1px solid #eaedf1;
+    padding: 8px 0;
+}
+
+/*
+ * Post navigation. The two links were a pair of post titles in grey boxes with
+ * nothing to say which way either one went; single.php now labels them.
+ */
+.nav-links .nav-subtitle {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #6b7480;
+}
+
+.nav-links .nav-title {
+    display: block;
+    font-size: 14px;
+    text-transform: none;
+}
+
+/*
+ * Slick draws its arrows over the first and last tab. Keep the headline clear
+ * of them rather than moving the arrows somewhere they cannot be found.
+ */
+.header-slider-thumbnail .slick-slide {
+    padding-left: 52px;
+    padding-right: 52px;
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - design refresh
+   ==========================================================================
+
+   The theme has looked the same since 2018: 13px body text, near-black
+   headings on a flat grey field, buttons in light grey on lighter grey, and
+   every panel separated by a three-pixel shadow you have to look for.
+
+   This layer is a single pass over the whole surface, in the direction the
+   templatesell blog templates have moved since: a cool off-white page, white
+   panels with a hairline edge and a small radius, one type scale from the
+   kicker to the headline, and colour used only where it means something - the
+   section a post belongs to, the control a reader is meant to press.
+
+   Nothing here changes what the templates output. Every accent below is also
+   registered in inc/dynamic-css.php, so the Primary Color option repaints it.
+   ========================================================================== */
+
+/* --------------------------------------------------------------- 1. Canvas */
+
+body {
+    background-color: #f4f7fa;
+    color: #5b6b7f;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p,
+.text {
+    line-height: 1.75;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #111b2b;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    color: #111b2b;
+}
+
+/* ----------------------------------------------------------- 2. Type scale */
+
+h2.entry-title {
+    color: #111b2b;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+    margin: 0 0 10px;
+}
+
+.single .entry-title,
+h1.entry-title {
+    font-size: 34px;
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+    margin: 0 0 12px;
+}
+
+.page-title {
+    color: #111b2b;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/*
+ * The kicker. Small, spaced capitals in the accent colour, sitting above the
+ * headline where a reader looks first.
+ */
+.entry-cats {
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.entry-cats a {
+    color: #3ccb89;
+}
+
+.entry-cats .sep {
+    color: #c3ccd6;
+}
+
+/*
+ * Date and author. One quiet line under the headline, not a second headline.
+ */
+.entry-meta {
+    color: #93a0b0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.entry-meta a {
+    color: #6b7a8c;
+}
+
+.entry-meta a:hover,
+.entry-meta a:focus {
+    color: #111b2b;
+}
+
+/* ----------------------------------------------------------- 3. Post cards */
+
+.site-main article .content-area,
+.related-pots-block,
+#comments,
+.error-404 {
+    background-color: #ffffff;
+    border: 1px solid #e7ecf2;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 1px 2px rgba(17, 27, 43, 0.03);
+    box-shadow: 0 1px 2px rgba(17, 27, 43, 0.03);
+}
+
+.site-main article .content-area {
+    margin-bottom: 26px;
+    padding-bottom: 0;
+}
+
+.site-main .entry-header {
+    padding: 26px 30px 0;
+    margin-bottom: 14px;
+}
+
+.site-main article .entry-content {
+    padding: 0 30px;
+    margin: 0;
+}
+
+/*
+ * The thumbnail runs the full width of the card and is cropped to one ratio,
+ * so a portrait photograph and a landscape one produce the same card.
+ */
+.site-main article .post-thumbnail {
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.site-main article .post-thumbnail img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    -webkit-transition: -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
+}
+
+.site-main article .content-area:hover .post-thumbnail img {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+/* A single post shows its picture whole rather than cropped to a card ratio. */
+.single .site-main article .post-thumbnail img,
+.page .site-main article .post-thumbnail img {
+    aspect-ratio: auto;
+}
+
+/*
+ * The excerpt and the footer are two different kinds of information, so the
+ * footer sits in its own tinted band at the foot of the card rather than
+ * floating in the same white space as the writing.
+ */
+.entry-footer,
+.site-main article .read-more {
+    padding: 0 30px;
+}
+
+.site-main article .entry-footer {
+    margin-top: 18px;
+    padding: 16px 30px;
+    border-top: 1px solid #eef2f6;
+    background-color: #fbfcfd;
+    border-radius: 0 0 8px 8px;
+    color: #93a0b0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.site-main article .read-more {
+    margin-top: 18px;
+}
+
+/*
+ * The post-format badge. It was a 40px circle level with the top of the card;
+ * at this size it reads as a mark on the headline rather than a button.
+ */
+article.hentry .entry-header::after {
+    font-size: 13px;
+}
+
+/* ------------------------------------------------------------- 4. Controls */
+
+.button,
+.show-more,
+button.show-more,
+input[type="submit"],
+button[type="submit"],
+.read-more a,
+.nav-links .nav-previous > a,
+.nav-links .nav-next > a,
+.wp-block-search__button {
+    background-color: #eef2f6;
+    color: #2b3a4d;
+    border-radius: 6px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 11px 20px;
+}
+
+.read-more a:hover,
+.read-more a:focus,
+.button:hover,
+.button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
+textarea {
+    background-color: #ffffff;
+    border: 1px solid #dde4ec;
+    border-radius: 6px;
+    color: #2b3a4d;
+    padding: 11px 14px;
+    font-size: 15px;
+    width: 100%;
+    max-width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    border-color: #b9c6d4;
+    color: #111b2b;
+}
+
+/*
+ * Pagination as a row of circles, with the page you are on filled in. The
+ * numbers were previously indistinguishable from body text.
+ */
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0 30px;
+}
+
+.pagination .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #e7ecf2;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #5b6b7f;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+}
+
+.pagination .page-numbers:hover,
+.pagination .page-numbers:focus {
+    border-color: #c9d4e0;
+    color: #111b2b;
+}
+
+.pagination .page-numbers.current {
+    border-color: transparent;
+    color: #ffffff;
+}
+
+/* -------------------------------------------------------------- 5. Sidebar */
+
+#secondary .widget,
+#left-sidebar .widget {
+    background-color: #ffffff;
+    border: 1px solid #e7ecf2;
+    border-radius: 8px;
+    padding: 24px 24px 22px;
+    margin-bottom: 26px;
+}
+
+.footer-top-box h2.widget-title,
+#secondary h2.widget-title,
+#left-sidebar h2.widget-title,
+.footer-top-box .widget_block h2,
+#secondary .widget_block h2,
+#left-sidebar .widget_block h2,
+.footer-top-box .wp-block-heading,
+#secondary .wp-block-heading,
+#left-sidebar .wp-block-heading {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+}
+
+#secondary .widget ul li a,
+#left-sidebar .widget ul li a,
+.widget_recent_comments li {
+    border-bottom: 1px solid #eef2f6;
+    color: #45566b;
+    font-size: 15px;
+    padding: 11px 0;
+}
+
+#secondary .wp-block-latest-posts li,
+#secondary .wp-block-latest-comments li,
+#secondary .wp-block-categories li,
+#secondary .wp-block-archives li,
+#left-sidebar .wp-block-latest-posts li,
+#left-sidebar .wp-block-latest-comments li,
+#left-sidebar .wp-block-categories li,
+#left-sidebar .wp-block-archives li {
+    border-bottom: 1px solid #eef2f6;
+    padding: 10px 0;
+    font-size: 15px;
+}
+
+#secondary .wp-block-latest-posts li:last-child,
+#secondary .wp-block-categories li:last-child,
+#secondary .wp-block-archives li:last-child,
+#secondary .wp-block-latest-comments li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+#secondary .widget.widget_search form input[type="search"],
+#secondary .widget.widget_search form input[type="submit"] {
+    height: 44px;
+}
+
+/* --------------------------------------------------------------- 6. Header */
+
+.site-branding {
+    padding: 38px 0 34px;
+}
+
+.site-header {
+    border-bottom: 1px solid #eef2f6;
+}
+
+h1.site-title,
+p.site-title a {
+    font-size: 4.4rem;
+    line-height: 1.1;
+}
+
+.site-description {
+    font-size: 2.6rem;
+    color: #93a0b0;
+}
+
+.main-menu {
+    background: #ffffff;
+    border-bottom: 1px solid #e7ecf2;
+}
+
+.header-top-section {
+    background: #111b2b;
+}
+
+.search-wrapper {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* --------------------------------------------------------- 7. Breadcrumbs */
+
+.breadcrumbs {
+    color: #93a0b0;
+    font-size: 13px;
+}
+
+/* ------------------------------------------------------------- 8. Comments */
+
+#comments {
+    padding: 30px;
+}
+
+.comment-list .comment-body {
+    border: 1px solid #e7ecf2;
+    border-radius: 8px;
+}
+
+/* --------------------------------------------------------------- 9. Footer */
+
+/*
+ * Pure black under a pale grey page was the single hardest edge on the site.
+ * The footer is now the same family as everything above it, marked off by a
+ * rule rather than by a change of medium.
+ */
+.footer-wrap {
+    background-color: #ffffff;
+    border-top: 1px solid #e7ecf2;
+    color: #5b6b7f;
+}
+
+.footer-wrap [class*="footer-col-"] {
+    padding-top: 46px;
+    padding-bottom: 26px;
+}
+
+.footer-top-box h2.widget-title,
+.footer-top-box .widget_block h2,
+.footer-top-box .wp-block-heading {
+    color: #111b2b;
+}
+
+.footer-top-box .widget ul li a,
+.footer-top-box .wp-block-latest-posts li a,
+.footer-top-box .wp-block-categories li a,
+.footer-top-box .wp-block-archives li a {
+    color: #45566b;
+    font-size: 15px;
+}
+
+.footer-top-box .widget ul li a:hover,
+.footer-top-box .widget ul li a:focus {
+    color: #111b2b;
+}
+
+.footer-wrap .site-footer {
+    border-top: 1px solid #eef2f6;
+    padding: 22px 0 26px;
+    color: #93a0b0;
+    font-size: 13px;
+}
+
+.footer-wrap .site-footer a {
+    color: #45566b;
+}
+
+/* ---------------------------------------------------- 10. Header slider */
+
+.header-slider .slider-items .caption h2 {
+    font-size: 34px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    text-transform: none;
+    color: #ffffff;
+}
+
+.header-slider .slider-items .caption {
+    max-width: 720px;
+}
+
+.header-slider-thumbnail .slick-slide {
+    background: #ffffff;
+    border-color: #e7ecf2;
+}
+
+.header-slider-thumbnail .slider-items h4 {
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #111b2b;
+}
+
+.header-slider-thumbnail .slider-items a {
+    color: #93a0b0;
+}
+
+/* ------------------------------------------------------ 11. Small screens */
+
+@media (max-width: 767px) {
+
+    h2.entry-title {
+        font-size: 22px;
+    }
+
+    .single .entry-title,
+    h1.entry-title {
+        font-size: 27px;
+    }
+
+    .site-main .entry-header,
+    .site-main article .entry-content,
+    .entry-footer,
+    .site-main article .read-more,
+    .site-main article .entry-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    h1.site-title,
+    p.site-title a {
+        font-size: 3rem;
+    }
+
+    .site-description {
+        font-size: 1.9rem;
+    }
+
+    .site-branding {
+        padding: 26px 0 22px;
+    }
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - design refresh, second pass
+   ========================================================================== */
+
+/*
+ * The read-more button and the entry meta are two floats sharing one line, so
+ * a background on the meta alone covered the right-hand half of the row and
+ * stopped. The rule that separates the writing from the furniture belongs on
+ * the bottom of the content instead, where it spans the whole card.
+ */
+.site-main article .entry-content {
+    padding: 0 30px 22px;
+    border-bottom: 1px solid #eef2f6;
+}
+
+.site-main article .entry-footer {
+    margin-top: 0;
+    padding: 24px 30px 22px;
+    border-top: 0;
+    background: none;
+    border-radius: 0;
+}
+
+.site-main article .read-more {
+    margin-top: 0;
+    padding: 20px 30px 22px;
+}
+
+/*
+ * Only one thing on a card is coloured: the section it belongs to. The date and
+ * the author are supporting information and read better in grey, which also
+ * stops three separate green items competing inside one headline block.
+ */
+.entry-meta .posted-on a,
+.entry-header .byline .author a {
+    color: #6b7a8c;
+}
+
+.entry-meta .posted-on a:hover,
+.entry-meta .posted-on a:focus,
+.entry-header .byline .author a:hover,
+.entry-header .byline .author a:focus {
+    color: #111b2b;
+}
+
+/*
+ * The block search widget. The theme only ever styled the classic search form,
+ * whose submit is an <input>; the block uses a <button>, so none of it applied
+ * and the label sat on top of the field.
+ */
+.wp-block-search__label {
+    display: block;
+    margin-bottom: 10px;
+    color: #111b2b;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.wp-block-search .wp-block-search__inside-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.wp-block-search .wp-block-search__input {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.wp-block-search .wp-block-search__button {
+    flex: 0 0 auto;
+    margin-left: 0;
+}
+
+/*
+ * The slider. A slide with no photograph behind it does not need to be as tall
+ * as one that has, and the call to action was set as bold text rather than as
+ * the button it is.
+ */
+.header-slider .slider-items {
+    min-height: 380px;
+}
+
+.header-slider .slider-items .img-holder img {
+    height: 380px;
+}
+
+.header-slider .slider-items .caption a {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 11px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+
+.header-slider .slider-items .caption a:hover,
+.header-slider .slider-items .caption a:focus {
+    background-color: #ffffff;
+    color: #111b2b;
+}
+
+.header-slider .slider-items .caption span {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/*
+ * Tags and comment counts in the entry footer sit at the same weight as the
+ * kicker but in grey, so the row reads as one line of furniture.
+ */
+.entry-footer a {
+    color: #6b7a8c;
+}
+
+.entry-footer a:hover,
+.entry-footer a:focus {
+    color: #111b2b;
+}
+
+.entry-footer span:after {
+    color: #c3ccd6;
+}
+
+@media (max-width: 767px) {
+
+    .site-main article .entry-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .site-main article .entry-footer,
+    .site-main article .read-more {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .header-slider .slider-items,
+    .header-slider .slider-items .img-holder img {
+        min-height: 300px;
+        height: 300px;
+    }
+
+    .header-slider .slider-items .caption h2 {
+        font-size: 24px;
+    }
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - design refresh, search widget
+   ========================================================================== */
+
+/*
+ * The sidebar search was designed around the classic widget: one bordered box
+ * with a transparent-bordered field and the submit absolutely positioned inside
+ * it. A block search puts its <label> inside that same box, where it landed on
+ * top of the field, and uses a <button> the absolute rule never matched.
+ *
+ * So: the classic treatment stays for the classic widget, and the block form
+ * gets a plain label above a field and a button beside it.
+ */
+#secondary .widget.widget_search form.wp-block-search,
+#left-sidebar .widget.widget_search form.wp-block-search {
+    border: 0;
+    float: none;
+    position: static;
+}
+
+/*
+ * The theme sets border-color: transparent on the search field at
+ * (1,3,2); the block form class carries this past it.
+ */
+#secondary .widget.widget_search form.wp-block-search input[type="search"],
+#left-sidebar .widget.widget_search form.wp-block-search input[type="search"] {
+    height: 44px;
+    border: 1px solid #dde4ec;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+#secondary .widget.widget_search .wp-block-search__button,
+#left-sidebar .widget.widget_search .wp-block-search__button {
+    height: 44px;
+    position: static;
+}
+
+#secondary .widget.widget_search .wp-block-search__label,
+#left-sidebar .widget.widget_search .wp-block-search__label {
+    margin-bottom: 12px;
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - design refresh, contrast
+   ==========================================================================
+
+   The muted grey the refresh used for supporting text, #93a0b0, measures 2.6:1
+   against white. WCAG asks 4.5:1 for body-sized text and 3:1 for large text,
+   and every one of these is small, uppercase and letter-spaced, which is the
+   hardest case to read, not the easiest. #5f6d80 measures 5.1:1 and still sits
+   a clear step behind the headline colour.
+   ========================================================================== */
+
+.entry-meta,
+.site-main article .entry-footer,
+.entry-footer,
+.breadcrumbs,
+.footer-wrap .site-footer,
+.related-date,
+.header-slider-thumbnail .slider-items a {
+    color: #5f6d80;
+}
+
+.entry-meta a,
+.entry-meta .posted-on a,
+.entry-header .byline .author a,
+.entry-footer a,
+.footer-wrap .site-footer a {
+    color: #46566d;
+}
+
+.entry-cats .sep,
+.entry-footer span:after {
+    color: #8b98a8;
+}
+
+/*
+ * The tagline is set at 2.6rem, which counts as large text and so needs 3:1
+ * rather than 4.5:1.
+ */
+.site-description {
+    color: #7c8a9a;
+}
+

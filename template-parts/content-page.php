@@ -15,9 +15,9 @@ $image_option = absint($free_blog_theme_options['free-blog-single-page-featured-
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 		</header><!-- .entry-header -->
 
-		<?php 
+		<?php
 			if( $image_option == 1 ){
-				free_blog_post_thumbnail(); 
+				free_blog_post_thumbnail();
 			}
 		?>
 		<div class="entry-content">

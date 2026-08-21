@@ -1,0 +1,119 @@
+/**
+ * Block editor styles.
+ *
+ * The theme declared no editor styles at all, so writing a post looked nothing
+ * like reading one: the editor used its own default serif-free stack at its own
+ * sizes, and every judgement about length, emphasis and rhythm made while
+ * writing was made against the wrong picture.
+ *
+ * This mirrors the front end - Raleway throughout, the same heading rhythm, the
+ * same quote and caption treatment - rather than restating the whole stylesheet.
+ *
+ * @package Free_Blog
+ */
+
+.editor-styles-wrapper {
+	font-family: 'Raleway', sans-serif;
+	color: #526071;
+	background-color: #ffffff;
+}
+
+.editor-styles-wrapper p,
+.editor-styles-wrapper li {
+	line-height: 1.8;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+	line-height: 1.2;
+	color: #2c3542;
+	margin-bottom: 0.5em;
+}
+
+.editor-styles-wrapper h1 { font-size: 2.2em; }
+.editor-styles-wrapper h2 { font-size: 1.8em; }
+.editor-styles-wrapper h3 { font-size: 1.45em; }
+.editor-styles-wrapper h4 { font-size: 1.2em; }
+.editor-styles-wrapper h5 { font-size: 1.05em; }
+.editor-styles-wrapper h6 { font-size: 1em; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.editor-styles-wrapper .editor-post-title__input,
+.editor-styles-wrapper .wp-block-post-title {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+	color: #2c3542;
+}
+
+.editor-styles-wrapper a {
+	color: #3ccb89;
+}
+
+/* The front end draws a five pixel accent rule down the left of a quote. */
+.editor-styles-wrapper blockquote,
+.editor-styles-wrapper .wp-block-quote {
+	background: #e5e5e5;
+	border-left: 5px solid #3ccb89;
+	padding: 15px;
+	margin: 15px 0;
+	font-style: normal;
+}
+
+.editor-styles-wrapper .wp-block-pullquote {
+	border-top: 3px solid #3ccb89;
+	border-bottom: 3px solid #3ccb89;
+	color: #2c3542;
+}
+
+.editor-styles-wrapper figcaption,
+.editor-styles-wrapper .wp-element-caption {
+	color: #989ea6;
+	font-size: 0.85em;
+	text-align: center;
+}
+
+.editor-styles-wrapper table th,
+.editor-styles-wrapper table td {
+	border: 1px solid #eaedf1;
+	padding: 8px;
+}
+
+.editor-styles-wrapper code,
+.editor-styles-wrapper pre {
+	background: #f7f8f8;
+	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+.editor-styles-wrapper hr,
+.editor-styles-wrapper .wp-block-separator {
+	border: 0;
+	border-top: 1px solid #eaedf1;
+}
+
+/* Block styles registered in inc/block-patterns.php. */
+.editor-styles-wrapper .is-style-free-blog-lead {
+	font-size: 1.2em;
+	line-height: 1.7;
+	color: #2c3542;
+}
+
+.editor-styles-wrapper .is-style-free-blog-boxed {
+	background: #f7f8f8;
+	border-left: 3px solid #3ccb89;
+	padding: 18px 20px;
+}
+
+.editor-styles-wrapper .is-style-free-blog-plain-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+.editor-styles-wrapper .is-style-free-blog-plain-list li {
+	border-bottom: 1px solid #eaedf1;
+	padding: 8px 0;
+}

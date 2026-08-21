@@ -14,10 +14,10 @@ if ( ! function_exists( 'free_blog_load_widgets' ) ) :
 
         // Author Widget.
         register_widget( 'Free_Blog_Author_Widget' );
-		
+
 		// Social Widget.
         register_widget( 'Free_Blog_Social_Widget' );
-        
+
         // Post Slider
         register_widget('Free_Blog_Post_Slider');
 

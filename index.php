@@ -15,12 +15,12 @@
 get_header();
 ?>
 
-<?php 
+<?php
 get_sidebar( 'left' );
 ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-			
+
 
 		<?php
 
@@ -35,7 +35,7 @@ get_sidebar( 'left' );
 			endif;
 
 			/* Masonry Start Section */
-			do_action('free_blog_masonry_start_hook'); 
+			do_action('free_blog_masonry_start_hook');
 
 			/* Start the Loop */
 			while ( have_posts() ) :
@@ -52,7 +52,7 @@ get_sidebar( 'left' );
 			endwhile;
 
 			/* Masonry end Section */
-			do_action('free_blog_masonry_end_hook'); 
+			do_action('free_blog_masonry_end_hook');
 
 			/**
              * free_blog_action_navigation hook
@@ -69,7 +69,7 @@ get_sidebar( 'left' );
 
 		endif;
 		?>
-	
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

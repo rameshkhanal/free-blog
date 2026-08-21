@@ -12,7 +12,7 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-			
+
 
 			<section class="error-404 not-found">
 				<header class="page-header">
@@ -25,7 +25,19 @@ get_header();
 					<?php
 					get_search_form();
 
-					the_widget( 'WP_Widget_Recent_Posts' );
+					// Same heading markup the sidebars register, so the widgets
+					// on this page look like the widgets everywhere else.
+					$free_blog_404_widget_args = array(
+						// the_widget() sprintf()s before_widget with the widget
+						// classname as its only argument, so %2$s here is a fatal
+						// ArgumentCountError on PHP 8.
+						'before_widget' => '<section class="widget %s">',
+						'after_widget'  => '</section>',
+						'before_title'  => '<h2 class="widget-title">',
+						'after_title'   => '</h2>',
+					);
+
+					the_widget( 'WP_Widget_Recent_Posts', '', $free_blog_404_widget_args );
 					?>
 
 					<div class="widget widget_categories">
@@ -46,14 +58,22 @@ get_header();
 					<?php
 					/* translators: %1$s: smiley */
 					$free_blog_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'free-blog' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$free_blog_archive_content" );
 
-					the_widget( 'WP_Widget_Tag_Cloud' );
+					the_widget(
+						'WP_Widget_Archives',
+						'dropdown=1',
+						array_merge(
+							$free_blog_404_widget_args,
+							array( 'after_title' => '</h2>' . $free_blog_archive_content )
+						)
+					);
+
+					the_widget( 'WP_Widget_Tag_Cloud', '', $free_blog_404_widget_args );
 					?>
 
 				</div><!-- .page-content -->
 			</section><!-- .error-404 -->
-		
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

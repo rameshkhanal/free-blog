@@ -7,6 +7,14 @@
  * @package Free_Blog
  */
 
+/**
+ * The theme version, used to cache-bust every stylesheet and script the
+ * theme owns. Keep it in step with the Version: header in style.css.
+ */
+if ( ! defined( 'FREE_BLOG_VERSION' ) ) {
+	define( 'FREE_BLOG_VERSION', '1.1.1' );
+}
+
 if ( ! function_exists( 'free_blog_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -23,7 +31,7 @@ if ( ! function_exists( 'free_blog_setup' ) ) :
 		 * If you're building a theme based on Free Blog, use a find and replace
 		 * to change 'free-blog' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'free-blog' );
+		load_theme_textdomain( 'free-blog', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -42,6 +50,11 @@ if ( ! function_exists( 'free_blog_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
+
+		// Sizes the templates actually ask for. Without these the slider and
+		// the related posts serve full-size originals.
+		add_image_size( 'free-blog-slider-image', 1170, 600, true );
+		add_image_size( 'free-blog-related-image', 370, 220, true );
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
@@ -82,7 +95,7 @@ if ( ! function_exists( 'free_blog_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
-		
+
         /*
         * Enable support for Post Formats.
         *
@@ -99,6 +112,19 @@ if ( ! function_exists( 'free_blog_setup' ) ) :
             'audio',
             'chat',
         ) );
+
+		// Let embedded media shrink with the column it sits in.
+		add_theme_support( 'responsive-embeds' );
+
+		// Allow wide and full-width blocks inside the content column.
+		add_theme_support( 'align-wide' );
+
+		// Use the core block stylesheet as the base for block appearance.
+		add_theme_support( 'wp-block-styles' );
+
+		// Make the editor render posts the way the front end will. The font
+		// sheet has to come along or the editor falls back to a system stack.
+		add_editor_style( array( 'assets/fonts/fonts.css', 'css/editor-styles.css' ) );
 	}
 endif;
 add_action( 'after_setup_theme', 'free_blog_setup' );
@@ -191,44 +217,63 @@ add_action( 'widgets_init', 'free_blog_widgets_init' );
  */
 function free_blog_scripts() {
 
-	/*google font  */
 	global $free_blog_theme_options;
-	$free_blog_name_font_url   = esc_url( $free_blog_theme_options['free-blog-font-family-url'] );
 
-	if($free_blog_name_font_url != ''):
-		wp_enqueue_style('free-blog-googleapis',$free_blog_name_font_url , null, false, 'all');
-	endif;
-	
-	/*Author signature google font  */
-    wp_enqueue_style('free-blog-author-sign', '//fonts.googleapis.com/css?family=Italianno|Niconne', array(), null);
-	
-	//*Font-Awesome-master*/
-    wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.5.0' );
+	/*
+	 * The theme's own typefaces are served from the theme directory, so a
+	 * default installation makes no third-party request and no visitor IP
+	 * reaches a font CDN. The Font URL field in the customizer still works
+	 * for anyone who wants to load an additional family.
+	 */
+	wp_enqueue_style( 'free-blog-fonts', get_template_directory_uri() . '/assets/fonts/fonts.css', array(), FREE_BLOG_VERSION );
 
-     wp_enqueue_style( 'bootstrap-_css', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '4.5.0' );
-    
-    /*Slick CSS*/
-    wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', array(), '4.5.0' );
-    
-	wp_enqueue_style( 'free-blog-style', get_stylesheet_uri() );
-	
-	 wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '4.6.0' );
-	
-	$masonry =  esc_attr($free_blog_theme_options['free-blog-column-blog-page']);
-    if( 'masonry-post' == $masonry )  {
-    	wp_enqueue_script( 'masonry' );
-    	wp_enqueue_script( 'free-blog-custom-masonry', get_template_directory_uri() . '/assets/js/custom-masonry.js', array('jquery'), '4.6.0' );
-   }
+	$free_blog_name_font_url = esc_url( $free_blog_theme_options['free-blog-font-family-url'] );
 
-	wp_enqueue_script( 'free-blog-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	if ( '' !== $free_blog_name_font_url ) {
+		// A remote stylesheet must not carry the theme version as a query arg.
+		wp_enqueue_style( 'free-blog-googleapis', $free_blog_name_font_url, array(), null );
+	}
 
-	/*Slick JS*/
-    wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.js', array('jquery'), '4.6.0' );
+	// Font Awesome 4.6.3, bundled in css/font-awesome.min.css.
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.6.3' );
 
-	wp_enqueue_script( 'free-blog-script', get_template_directory_uri() . '/js/script.js', array(), '20151215', true );
+	// Bootstrap 3.3.7, bundled in assets/.
+	wp_enqueue_style( 'bootstrap-_css', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.7' );
 
-	/*Custom Scripts*/
-	wp_enqueue_script( 'free-blog-custom', get_template_directory_uri() . '/assets/js/custom.js', array(), '20151215', true );
+	// Slick 1.8.0, bundled in assets/.
+	wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', array(), '1.8.0' );
+
+	wp_enqueue_style( 'free-blog-style', get_stylesheet_uri(), array( 'free-blog-fonts' ), FREE_BLOG_VERSION );
+
+	wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.7', true );
+
+	$masonry = esc_attr( $free_blog_theme_options['free-blog-column-blog-page'] );
+
+	if ( 'masonry-post' === $masonry ) {
+		wp_enqueue_script( 'masonry' );
+		wp_enqueue_script( 'free-blog-custom-masonry', get_template_directory_uri() . '/assets/js/custom-masonry.js', array( 'jquery', 'masonry' ), FREE_BLOG_VERSION, true );
+	}
+
+	wp_enqueue_script( 'free-blog-navigation', get_template_directory_uri() . '/js/navigation.js', array(), FREE_BLOG_VERSION, true );
+
+	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.js', array( 'jquery' ), '1.8.0', true );
+
+	/*
+	 * script.js, custom.js and the sticky sidebar are all written against
+	 * jQuery but used to declare no dependency on it; they only worked
+	 * because Bootstrap happened to pull jQuery into the head first.
+	 */
+	wp_enqueue_script( 'free-blog-script', get_template_directory_uri() . '/js/script.js', array( 'jquery' ), FREE_BLOG_VERSION, true );
+
+	wp_localize_script(
+		'free-blog-script',
+		'freeBlogL10n',
+		array(
+			'expandMenu' => __( 'Expand child menu', 'free-blog' ),
+		)
+	);
+
+	wp_enqueue_script( 'free-blog-custom', get_template_directory_uri() . '/assets/js/custom.js', array( 'jquery' ), FREE_BLOG_VERSION, true );
 
 	global $wp_query;
     $paged = ( get_query_var( 'paged' ) > 1 ) ? get_query_var( 'paged' ) : 1;
@@ -243,18 +288,17 @@ function free_blog_scripts() {
         'no_more_posts'        => __( 'No More', 'free-blog' ),
     ));
 
-	wp_enqueue_script( 'free-blog-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'free-blog-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), FREE_BLOG_VERSION, true );
 
 	/*Sticky Sidebar*/
-	global $free_blog_theme_options;
 	if( 1 == absint($free_blog_theme_options['free-blog-enable-sticky-sidebar'])) {
-		wp_enqueue_script( 'theia-sticky-sidebar', get_template_directory_uri() . '/assets/js/theia-sticky-sidebar.js', array(), '20151215', true );
+		wp_enqueue_script( 'theia-sticky-sidebar', get_template_directory_uri() . '/assets/js/theia-sticky-sidebar.js', array( 'jquery' ), '1.4.0', true );
 	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-	
+
 }
 add_action( 'wp_enqueue_scripts', 'free_blog_scripts' );
 
@@ -310,6 +354,11 @@ require get_template_directory() . '/inc/customizer-category-control.php';
  * Dynamic CSS file load
  */
 require get_template_directory() . '/inc/dynamic-css.php';
+
+/**
+ * Block patterns and block styles.
+ */
+require get_template_directory() . '/inc/block-patterns.php';
 /**
  * load custom widgets
  */
@@ -325,6 +374,6 @@ require get_template_directory() . '/inc/customizer-pro/class-customize.php';
 
 // Update CSS within in Admin
 function free_blog_admin_style() {
-  wp_enqueue_style('free-blog-about', get_template_directory_uri() . '/css/about.css', array(), '4.5.0');
+	wp_enqueue_style( 'free-blog-about', get_template_directory_uri() . '/css/about.css', array(), FREE_BLOG_VERSION );
 }
 add_action('admin_enqueue_scripts', 'free_blog_admin_style');

@@ -16,6 +16,13 @@ defined( 'ABSPATH' ) || exit;
 class Free_Blog_Notice_Handler {
 
 	/**
+	 * Name of the theme, or of the parent when a child theme is active.
+	 *
+	 * @var string
+	 */
+	public $theme_name = '';
+
+	/**
 	 * Empty Constructor
 	 */
 	public function __construct() {
@@ -23,7 +30,7 @@ class Free_Blog_Notice_Handler {
         if ( is_child_theme() ) {
             $this->theme_name = esc_attr( $theme->parent()->get( 'Name' ) );
         } else {
-            $this->theme_name = esc_attr ( $theme->get( 'Name' ) );
+            $this->theme_name = esc_attr( $theme->get( 'Name' ) );
         }
         /* activation notice */
         add_action( 'load-themes.php', array( $this, 'activation_admin_notice' ) );
@@ -44,9 +51,33 @@ class Free_Blog_Notice_Handler {
      * Display an admin notice linking to the about page
      */
     public function at_theme_info_welcome_admin_notice() {
-        echo '<div class="updated notice is-dismissible">';
-        echo ( '<p>' . sprintf( __('Welcome! Thank you for choosing %1$s!. To fully take advantage of the best our theme can offer, get started.','free-blog'), $this->theme_name ) . '<p class="plugin-notice" style="font-size: 10px">'.esc_html__('Clicking on get started will activate Advanced Import and Aki Toolset', 'free-blog').'</p></p>'.'<p><a href="#" class="free-blog-install-plugins button" style="text-decoration: none;">' . sprintf( __('Get started with %s','free-blog'), $this->theme_name ) . '</a></p>' );
-        echo '</div>';
+        ?>
+        <div class="updated notice is-dismissible">
+            <p>
+                <?php
+                printf(
+                    /* translators: %s: name of the active theme. */
+                    esc_html__( 'Welcome! Thank you for choosing %s. To take full advantage of what the theme can do, get started below.', 'free-blog' ),
+                    esc_html( $this->theme_name )
+                );
+                ?>
+            </p>
+            <p class="plugin-notice">
+                <?php esc_html_e( 'Getting started will install and activate Advanced Import and Aki Toolset.', 'free-blog' ); ?>
+            </p>
+            <p>
+                <a href="#" class="free-blog-install-plugins button">
+                    <?php
+                    printf(
+                        /* translators: %s: name of the active theme. */
+                        esc_html__( 'Get started with %s', 'free-blog' ),
+                        esc_html( $this->theme_name )
+                    );
+                    ?>
+                </a>
+            </p>
+        </div>
+        <?php
     }
 
 
@@ -59,30 +90,34 @@ class Free_Blog_Notice_Handler {
 
 		check_ajax_referer( 'free_blog_demo_import_nonce', 'security' );
 
-        $slug   = $_POST['slug'];
-        $plugin = $slug.'/'.$slug.'.php';
-        $request = $_POST['request'];
-
+        // sanitize_key() strips the slashes and dots a slug must never contain,
+        // which is what keeps the concatenated paths below inside the plugins
+        // directory.
+        $slug    = isset( $_POST['slug'] ) ? sanitize_key( wp_unslash( $_POST['slug'] ) ) : '';
+        $request = isset( $_POST['request'] ) ? absint( wp_unslash( $_POST['request'] ) ) : 0;
+        $plugin  = $slug . '/' . $slug . '.php';
 
         $status = array(
             'install' => 'plugin',
-            'slug'    => sanitize_key( wp_unslash( $slug ) ),
+            'slug'    => $slug,
         );
         $status['redirect'] = admin_url( '/themes.php?page=advanced-import&browse=all&at-gsm-hide-notice=welcome' );
 
-        if ( is_plugin_active_for_network( $plugin ) || is_plugin_active( $plugin ) ) {
-            // Plugin is activated
-            wp_send_json_success($status);
-        }
-
-
+        // Nothing below is any of a visitor's business, and the nonce alone does
+        // not establish that: it is printed for every user who loads an admin
+        // screen, including subscribers.
         if ( ! current_user_can( 'install_plugins' ) ) {
             $status['errorMessage'] = __( 'Sorry, you are not allowed to install plugins on this site.', 'free-blog' );
             wp_send_json_error( $status );
         }
 
-        if( $request > 2){
-            wp_send_json_error( );
+        if ( '' === $slug || $request > 2 ) {
+            wp_send_json_error( $status );
+        }
+
+        if ( is_plugin_active_for_network( $plugin ) || is_plugin_active( $plugin ) ) {
+            // Plugin is activated
+            wp_send_json_success($status);
         }
 
         include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
@@ -116,7 +151,7 @@ class Free_Blog_Notice_Handler {
         $api = plugins_api(
             'plugin_information',
             array(
-                'slug'   => sanitize_key( wp_unslash( $slug ) ),
+                'slug'   => $slug,
                 'fields' => array(
                     'sections' => false,
                 ),

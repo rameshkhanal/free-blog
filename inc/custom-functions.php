@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Free Blog Slider Function
  * @since Free Blog 1.0.0
@@ -29,14 +29,14 @@ if ( !function_exists('free_blog_slider') ) :
 				<?php while ($slider_query->have_posts()) : $slider_query->the_post(); ?>
 					<div class="slider-items">
 						<div class="caption">
-							<span><?php echo get_the_date(); ?></span>
+							<span><?php echo esc_html( get_the_date() ); ?></span>
 							<h2><?php the_title(); ?></h2>
 							<?php if( !empty( $read_more ) ): ?>
 								<a href="<?php the_permalink(); ?>"><?php echo $read_more; ?></a>
 							<?php endif; ?>
 						</div>
 
-						<div class="img-holder"><a href="<?php the_permalink(); ?>">
+						<div class="img-holder"><a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
 							<?php
 							if (has_post_thumbnail()) {
 								the_post_thumbnail('free-blog-slider-image');
@@ -46,40 +46,30 @@ if ( !function_exists('free_blog_slider') ) :
 					</div>
 
 				</div>
-			<?php endwhile;
-			wp_reset_postdata(); ?>
+			<?php endwhile; ?>
 		</div>
 	<?php endif; ?>
 
 	<?php
-	$args = array(
-		'posts_per_page' => $slider_num,
-		'paged' => 1,
-		'cat' => $cat_id,
-		'post_type' => 'post'
-	);
-	$slider_query = new WP_Query($args);
-	if ($slider_query->have_posts() ):
+	if ( $slider_suggest == 1 && $slider_query->have_posts() ) :
+		$slider_query->rewind_posts();
 		?>
         <div class="header-slider-thumbnail">
             <?php while ($slider_query->have_posts()) : $slider_query->the_post(); ?>
-                <?php if( $slider_suggest == 1 ) { ?>
                 <div class="slider-items">
                    <?php
                    $categories = get_the_category();
                    if ( ! empty( $categories ) ) {
-                      echo '<a href="'.esc_url( get_category_link( $categories[0]->term_id ) ).'" title="Lifestyle">'.esc_html( $categories[0]->name ).'</a>';
-                  }                                 
+                      echo '<a href="'.esc_url( get_category_link( $categories[0]->term_id ) ).'">'.esc_html( $categories[0]->name ).'</a>';
+                  }
                   ?>
                   <h4><?php the_title(); ?></h4>
               </div>
-              <?php } ?>
-          <?php endwhile;
-          wp_reset_postdata(); ?>
+          <?php endwhile; ?>
       </div>
-  <?php endif; ?>
-  <?php 
-} 
+  <?php endif;
+  wp_reset_postdata();
+}
 endif;
 add_action( 'free_blog_slider_hook', 'free_blog_slider', 10 );
 
@@ -142,9 +132,12 @@ function free_blog_layout_body_class($classes)
  */
 if ( !function_exists('free_blog_excerpt_more') ) :
     function free_blog_excerpt_more( $more ) {
-        if(!is_admin() ){
-            return '';
+        if ( is_admin() ) {
+            // Returning nothing here left the editor with no excerpt ellipsis
+            // at all; the filter has to hand back what it was given.
+            return $more;
         }
+        return '';
     }
 endif;
 add_filter('excerpt_more', 'free_blog_excerpt_more');
@@ -186,10 +179,12 @@ if ( !function_exists('free_blog_posts_navigation') ) :
         if( 'default' == $free_blog_pagination_option ){
             the_posts_navigation();
         }elseif('numeric' == $free_blog_pagination_option){
-            echo"<div class='pagination'>";
             global $wp_query;
             $big = 999999999; // need an unlikely integer
-            echo paginate_links(array(
+            // paginate_links() returns null when there is only one page of
+            // results, and passing that to wp_kses_post() is a deprecation on
+            // PHP 8.1 and later.
+            $free_blog_links = paginate_links(array(
                 'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
                 'format' => '?paged=%#%',
                 'current' => max(1, get_query_var('paged')),
@@ -197,17 +192,24 @@ if ( !function_exists('free_blog_posts_navigation') ) :
                 'prev_text' => __('&laquo; Prev', 'free-blog'),
                 'next_text' => __('Next &raquo;', 'free-blog'),
             ));
-            echo "<div>";
+
+            if ( $free_blog_links ) {
+                printf(
+                    '<nav class="pagination" aria-label="%1$s">%2$s</nav>',
+                    esc_attr__( 'Posts navigation', 'free-blog' ),
+                    wp_kses_post( $free_blog_links )
+                );
+            }
         }
         elseif('ajax' == $free_blog_pagination_option){
-        	$page_number = get_query_var('paged');
-            if( $page_number == 0 ){
-                $output_page = 2;
-            }
-            else{
-                $output_page = $page_number + 1;
-            }
-            echo "<div class='show-more' data-number='$output_page'><i class='fa fa-refresh'></i>".__('View More','free-blog')."</div><div id='free-temp-post'></div>"; 
+        	$page_number = absint( get_query_var('paged') );
+            $output_page = $page_number < 2 ? 2 : $page_number + 1;
+
+            printf(
+                '<button type="button" class="show-more" data-number="%1$d"><i class="fa fa-refresh" aria-hidden="true"></i>%2$s</button><div id="free-temp-post"></div>',
+                $output_page,
+                esc_html__( 'View More', 'free-blog' )
+            );
         }else{
             return false;
         }
@@ -229,7 +231,7 @@ if ( !function_exists('free_blog_related_post') ) :
     function free_blog_related_post( $post_id ) {
 
         global $free_blog_theme_options;
-        $title = esc_html( $free_blog_theme_options['free-blog-single-page-related-posts-title']); 
+        $title = esc_html( $free_blog_theme_options['free-blog-single-page-related-posts-title']);
         if( 0 == $free_blog_theme_options['free-blog-single-page-related-posts'] ){
             return;
         }
@@ -239,14 +241,18 @@ if ( !function_exists('free_blog_related_post') ) :
             foreach ($categories as $category) {
                 $category_ids[] = $category->term_id;
             }
-             $category_ids = array();
-             $category = get_category($category_ids);
-             $categories  = get_the_category( $post_id );
-	            foreach ( $categories as $category ){
-	                $category_ids[]  = $category->term_id;			              
-	            }
-            $count = $category->category_count;
-            if($count > 1 ){
+
+            $free_blog_cat_post_args = array(
+                'category__in'       => $category_ids,
+                'post__not_in'       => array($post_id),
+                'post_type'          => 'post',
+                'posts_per_page'     => 2,
+                'post_status'        => 'publish',
+                'ignore_sticky_posts'=> true
+            );
+            $free_blog_featured_query = new WP_Query( $free_blog_cat_post_args );
+
+            if ( $free_blog_featured_query->have_posts() ) {
             ?>
             <div class="related-pots-block">
                 <h2 class="widget-title">
@@ -254,16 +260,6 @@ if ( !function_exists('free_blog_related_post') ) :
                 </h2>
                 <ul class="related-post-entries clear">
                     <?php
-                    $free_blog_cat_post_args = array(
-                        'category__in'       => $category_ids,
-                        'post__not_in'       => array($post_id),
-                        'post_type'          => 'post',
-                        'posts_per_page'     => 2,
-                        'post_status'        => 'publish',
-                        'ignore_sticky_posts'=> true
-                    );
-                    $free_blog_featured_query = new WP_Query( $free_blog_cat_post_args );
-
                     while ( $free_blog_featured_query->have_posts() ) : $free_blog_featured_query->the_post();
                         ?>
                         <li>
@@ -273,7 +269,7 @@ if ( !function_exists('free_blog_related_post') ) :
                                     ?>
                                     <figure class="widget-image">
                                         <a href="<?php the_permalink()?>">
-                                            <?php the_post_thumbnail('full'); ?>
+                                            <?php the_post_thumbnail('free-blog-related-image'); ?>
                                         </a>
                                     </figure>
                                     <?php
@@ -281,7 +277,7 @@ if ( !function_exists('free_blog_related_post') ) :
                                 ?>
                                 <div class="featured-desc">
                                     <a href="<?php the_permalink()?>">
-                                        <h2 class="title"> <?php the_title(); ?></h2>
+                                        <h3 class="title"><?php the_title(); ?></h3>
                                     </a>
                                 </div>
                                 <div class="related-date">
@@ -315,10 +311,11 @@ if (!function_exists('free_blog_go_to_top')) :
     {
         global $free_blog_theme_options;
         $to_top = $free_blog_theme_options['free-blog-go-to-top'];
-        if( $to_top == 1 ){ 
+        if( $to_top == 1 ){
             ?>
-            <a id="toTop" class="go-to-top" href="#" title="<?php esc_attr_e('Go to Top', 'free-blog'); ?>">
-                <i class="fa fa-angle-up"></i>
+            <a id="toTop" class="go-to-top" href="#">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+                <span class="screen-reader-text"><?php esc_html_e( 'Back to top', 'free-blog' ); ?></span>
             </a>
             <?php } else{
                 return false;
@@ -337,7 +334,7 @@ if (!function_exists('free_blog_masonry_start')) :
     { ?>
         <div class="masonry-start"><div id="masonry-loop">
 
-<?php 
+<?php
 }
 endif;
 add_action( 'free_blog_masonry_start_hook', 'free_blog_masonry_start', 10, 1 );
@@ -354,7 +351,7 @@ if (!function_exists('free_blog_masonry_end')) :
         </div>
     </div>
 
-<?php 
+<?php
 }
 endif;
 add_action( 'free_blog_masonry_end_hook', 'free_blog_masonry_end', 10, 1 );
@@ -391,9 +388,13 @@ if( ! function_exists( 'free_blog_breadcrumbs' ) ):
         if( !empty( $free_blog_you_are_here_text ) ){
             $free_blog_you_are_here_text = "<span class='breadcrumb'>".$free_blog_you_are_here_text."</span>";
         }
-        echo "<div class='breadcrumbs init-animate clearfix'>".$free_blog_you_are_here_text."<div id='free_blog-breadcrumbs' class='clearfix'>";
+        printf(
+            '<nav class="breadcrumbs init-animate clearfix" aria-label="%1$s">%2$s<div id="free_blog-breadcrumbs" class="clearfix">',
+            esc_attr__( 'Breadcrumb', 'free-blog' ),
+            wp_kses_post( $free_blog_you_are_here_text )
+        );
         free_blog_breadcrumb_trail( $breadcrumb_args );
-        echo "</div></div>";
+        echo '</div></nav>';
     }
 endif;
 add_action('free_blog_breadcrumbs_hook', 'free_blog_breadcrumbs');

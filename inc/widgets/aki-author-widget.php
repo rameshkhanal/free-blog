@@ -352,9 +352,25 @@ if (!class_exists('Free_Blog_Author_Widget')) :
 
 endif;
 add_action('admin_enqueue_scripts', 'free_blog_widgets_backend_enqueue');
-function free_blog_widgets_backend_enqueue()
+/**
+ * Load the widget helper script where the widgets actually are.
+ *
+ * This used to run on every admin screen, which meant every page load in the
+ * dashboard pulled in the whole media library modal for the benefit of one
+ * image field, and handed a plugin-install nonce to any logged-in user who
+ * opened their own profile.
+ *
+ * @param string $hook_suffix The current admin page.
+ */
+function free_blog_widgets_backend_enqueue( $hook_suffix = '' )
 {
-    wp_register_script('free-blog-custom-widgets', get_template_directory_uri() . '/assets/js/widgets.js', array('jquery'), true);
+    if ( ! in_array( $hook_suffix, array( 'widgets.php', 'customize.php', 'themes.php' ), true ) ) {
+        return;
+    }
+
+    // The fourth argument of wp_register_script() is the version, not the
+    // in-footer flag; passing true here registered the script as version "1".
+    wp_register_script('free-blog-custom-widgets', get_template_directory_uri() . '/assets/js/widgets.js', array('jquery'), FREE_BLOG_VERSION, true);
     $translation = array(
         'btn_text' => esc_html__( 'Processing...', 'free-blog' ),
         'nonce'    => wp_create_nonce( 'free_blog_demo_import_nonce' ),

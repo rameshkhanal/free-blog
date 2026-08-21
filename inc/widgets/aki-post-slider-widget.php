@@ -46,15 +46,15 @@ if (!class_exists('Free_Blog_Post_Slider')) :
             );
 
             $query = new WP_Query($query_args); ?>
-            
-            <div class="post-slider-section">            
+
+            <div class="post-slider-section">
                 <?php if ($query->have_posts()) :
                     while ($query->have_posts()) :
                         $query->the_post();
                         ?>
                             <div class="post-slide-item">
                                 <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('full'); ?>
+                                    <?php the_post_thumbnail('free-blog-slider-image'); ?>
                                 </a>
                                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 <span class="entry-meta">
@@ -67,12 +67,12 @@ if (!class_exists('Free_Blog_Post_Slider')) :
                 endif;
                 ?>
                   </div>
-                <?php 
+                <?php
 
-    
-                echo $args['after_widget']; ?>            
-          
-            <?php 
+
+                echo $args['after_widget']; ?>
+
+            <?php
         }
 
         function update($new_instance, $old_instance)
@@ -97,7 +97,7 @@ if (!class_exists('Free_Blog_Post_Slider')) :
                 'title' => esc_html__('Recent Posts', 'free-blog' ),
                 'post-number' => 5,
             );
-            
+
             $instance = wp_parse_args((array)$instance, $defaults);
             ?>
             <p>

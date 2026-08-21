@@ -17,12 +17,12 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-			<?php 
-			 
+			<?php
+
 			//Breadcrumb hook
-			 do_action('free_blog_breadcrumb_options_hook'); 
+			 do_action('free_blog_breadcrumb_options_hook');
 			?>
-			
+
 
 		<?php
 		while ( have_posts() ) :

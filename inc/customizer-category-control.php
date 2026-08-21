@@ -7,7 +7,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
  * A class to create a dropdown for all categories in your wordpress site
  */
  class Free_Blog_Customize_Category_Dropdown_Control extends WP_Customize_Control {
-    
+
     /**
      * Render the control's content.
      *

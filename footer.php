@@ -19,24 +19,8 @@ if ( is_active_sidebar('footer-1') || is_active_sidebar('footer-2') || is_active
                 $count++;
             }
         }
-       
-        $footer_col= 4;
-        if( $count == 4 ) 
-	        {
-	            $footer_col= 4;  
-	        }
-	        elseif( $count == 3)
-	        {
-	            $footer_col= 3;
-	        }
-	        elseif( $count == 2) 
-	        {
-	            $footer_col= 2;
-	        }
-	        elseif( $count == 1) 
-	        {
-	            $footer_col= 1;
-	        }
+
+        $footer_col = $count > 0 ? $count : 4;
       }
 
 ?>
@@ -49,19 +33,19 @@ if ( is_active_sidebar('footer-1') || is_active_sidebar('footer-2') || is_active
 				if ( is_active_sidebar( 'footer-' . $i ) )
 					{
 						?>
-						<div class="footer-col-<?php echo $footer_col; ?>">
+						<div class="footer-col-<?php echo absint( $footer_col ); ?>">
 							<div class="footer-top-box wow fadeInUp">
 								<?php dynamic_sidebar( 'footer-' . $i ); ?>
 							</div>
 						</div>
-						<?php  
+						<?php
 					}
-				}       
+				}
 			?>
 		</div>
 		<footer id="colophon" class="site-footer">
 			<div class="copyright">
-				<?php echo $copyright; ?>
+				<?php echo wp_kses_post( $copyright ); ?>
 			</div>
 			<div class="site-info">
 				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'free-blog' ) ); ?>">
@@ -73,7 +57,11 @@ if ( is_active_sidebar('footer-1') || is_active_sidebar('footer-2') || is_active
 				<span class="sep"> | </span>
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'free-blog' ), 'Free Blog', '<a href="https://www.akithemes.com/">Aki Themes</a>' );
+				printf(
+					esc_html__( 'Theme: %1$s by %2$s.', 'free-blog' ),
+					'Free Blog',
+					'<a href="' . esc_url( 'https://www.akithemes.com/' ) . '">Aki Themes</a>'
+				);
 				?>
 			</div>
 		</footer>

@@ -1,6 +1,6 @@
 <?php
 /**
-     * A class to create a option separator in customizer section 
+     * A class to create a option separator in customizer section
      *
      *@since 1.0.0
      */
