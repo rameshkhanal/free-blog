@@ -43,13 +43,14 @@ Design
 * The 404 page now uses the same panel and headings as the rest of the site instead of browser defaults
 * Related posts are laid out as two equal columns with one image ratio
 * The slider caption is legible whether or not the post has a featured image, and "Read More" is a button
+* The default accent is a deeper green. The old #3ccb89 measured 2.08:1 against white as text and as a background for white text alike, so every link, category, tag and the filled pagination chip was below the readable minimum. Same hue, 4.67:1
+* The sticky header works for the first time, and now sticks the menu bar rather than the nav inside it: full width, unchanged height, a placeholder so the page does not jump, and clear of the admin bar
 
 Fixed
 * The PHP 8.2 "Creation of dynamic property" deprecation that was logged on every single page view
 * An unclosed div in the numeric pagination that nested the rest of the page inside it
 * The thumbnail strip under the header slider, which was pushed off the left edge of the screen
 * Related posts appeared or vanished according to an unrelated category count; the query decides now
-* The sticky header class was never applied, because scrollTop was compared without being called
 * Parent menu items could not be followed: their default was prevented on every screen size
 * The excerpt filter returned nothing in the admin, leaving the editor with no ellipsis
 * The tag and category counts in the sidebar, and the widget headings, had not been styled since WordPress moved widgets to blocks in 5.8

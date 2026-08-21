@@ -51,22 +51,22 @@
 }
 
 .editor-styles-wrapper a {
-	color: #3ccb89;
+	color: #128551;
 }
 
 /* The front end draws a five pixel accent rule down the left of a quote. */
 .editor-styles-wrapper blockquote,
 .editor-styles-wrapper .wp-block-quote {
 	background: #e5e5e5;
-	border-left: 5px solid #3ccb89;
+	border-left: 5px solid #128551;
 	padding: 15px;
 	margin: 15px 0;
 	font-style: normal;
 }
 
 .editor-styles-wrapper .wp-block-pullquote {
-	border-top: 3px solid #3ccb89;
-	border-bottom: 3px solid #3ccb89;
+	border-top: 3px solid #128551;
+	border-bottom: 3px solid #128551;
 	color: #2c3542;
 }
 
@@ -104,7 +104,7 @@
 
 .editor-styles-wrapper .is-style-free-blog-boxed {
 	background: #f7f8f8;
-	border-left: 3px solid #3ccb89;
+	border-left: 3px solid #128551;
 	padding: 18px 20px;
 }
 

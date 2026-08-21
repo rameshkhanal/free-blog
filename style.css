@@ -692,7 +692,7 @@ button[type="submit"]:focus,
 .nav-links .nav-previous > a:focus,
 .nav-links .nav-next > a:hover,
 .nav-links .nav-next > a:focus {
-    background-color: #3ccb89;
+    background-color: #128551;
     color: #fff;
 }
 
@@ -801,7 +801,7 @@ textarea {
 a:hover,
 a:focus,
 a:active {
-    color: #3ccb89;
+    color: #128551;
 }
 a:focus {
     outline: thin dotted;
@@ -1141,7 +1141,7 @@ article.format-chat .entry-header::after,
 article.format-aside .entry-header::after,
 article.format-link .entry-header::after{
     font-size: 20px;
-    color: #3ccb89;
+    color: #128551;
     display: inline-block;
     font-family: "fontawesome";
     right: 16px;
@@ -1149,7 +1149,7 @@ article.format-link .entry-header::after{
     text-align: center;
     top: 0;
     width: 35px;
-    border: 1px solid #3ccb89;
+    border: 1px solid #128551;
     border-radius: 100%;
     height: 35px;
     line-height: 35px;
@@ -1199,7 +1199,7 @@ body {
 a {
     text-decoration: none;
     cursor: pointer;
-    color: #3ccb89;
+    color: #128551;
 }
 
 a:hover,
@@ -1450,7 +1450,7 @@ p.site-title  a {
 .navbar-nav > li.current_page_ancestor > a,
 .navbar-nav > li.current-menu-item > a {
     background: none;
-    color: #3ccb89;
+    color: #128551;
     transition: all 0.5s ease;
 }
 
@@ -1475,7 +1475,7 @@ p.site-title  a {
 }
 
 .navbar-toggle {
-    background-color: #3ccb89;
+    background-color: #128551;
 }
 
 .site-title {
@@ -1484,7 +1484,7 @@ p.site-title  a {
 }
 
 .site-title a {
-    color: #3ccb89;
+    color: #128551;
 }
 
 .site-description {
@@ -1657,11 +1657,11 @@ p.site-title  a {
     .main-menu .navbar-toggle {
         display: inline-block;
         z-index: 7;
-        border: 1px solid #3ccb89;
+        border: 1px solid #128551;
         float: none;
         margin: 0px 0px 0px 0px;
         border-radius: 0px;
-        background: #3ccb89;
+        background: #128551;
     }
     .collapse {
         max-height: 350px;
@@ -1899,9 +1899,9 @@ body.mb-menu #primary-menu {
 }
 
 #secondary .widget.widget_search form input[type="submit"] {
-    background-color: #3ccb89;
+    background-color: #128551;
     color: #fff;
-    border-color: #3ccb89;
+    border-color: #128551;
     position: absolute;
     right: 0;
     top: 0;
@@ -1981,7 +1981,7 @@ blockquote {
     margin: 0 1.5em;
     padding: 15px;
     background: #e5e5e5;
-    border-left: 5px solid #3ccb89;
+    border-left: 5px solid #128551;
     width: 100%;
     margin: 0;
     margin: 15px 0;
@@ -2074,7 +2074,7 @@ table>thead>tr>th {
 
 .entry-footer .cat-links a,
 .entry-footer .edit-link a {
-    color: #3ccb89;
+    color: #128551;
 }
 .footer-top-box h2.widget-title,
 #secondary h2.widget-title,
@@ -2691,7 +2691,7 @@ bottom: 0;
 
 .pagination .page-numbers {
     border: 0;
-    color: #3ccb89;
+    color: #128551;
     display: inline-block;
     font-size: 13px;
     font-weight: 700;
@@ -2708,17 +2708,17 @@ bottom: 0;
 
 .pagination .page-numbers:hover {
     background: #ffffff;
-    color: #3ccb89;
+    color: #128551;
 }
 
 .pagination .page-numbers.next,
 .pagination .page-numbers.prev {
     background: #ffffff;
-    color: #3ccb89;
+    color: #128551;
 }
 
 .pagination .page-numbers.current {
-    background: #3ccb89;
+    background: #128551;
     color: #fff;
 }
 /*==========================================
@@ -2747,7 +2747,7 @@ bottom: 0;
     margin: 0;
 }
 .author-profile ul li a:hover:before {
-    color: #3ccb89;
+    color: #128551;
 }
 
 figure.author {
@@ -3153,7 +3153,7 @@ PAGE HEADER
 }
 
 .slick-dots li.slick-active button{
-    background:#3ccb89;
+    background:#128551;
     box-shadow: none;
 }
 
@@ -4090,7 +4090,7 @@ textarea:focus-visible,
     bottom: 0;
     width: 40px;
     height: 2px;
-    background-color: #3ccb89;
+    background-color: #128551;
 }
 
 /* The footer sits on a dark panel, so its headings need the opposite colour. */
@@ -4133,7 +4133,7 @@ textarea:focus-visible,
 
 .is-style-free-blog-boxed {
     background: #f7f8f8;
-    border-left: 3px solid #3ccb89;
+    border-left: 3px solid #128551;
     padding: 18px 20px;
 }
 
@@ -4198,7 +4198,7 @@ button[type="submit"],
 
 .wp-block-search__button:hover,
 .wp-block-search__button:focus {
-    background-color: #3ccb89;
+    background-color: #128551;
     color: #ffffff;
 }
 
@@ -4207,7 +4207,7 @@ button[type="submit"],
  * asked to press, so it gets the accent rather than the grey.
  */
 .comment-form input[type="submit"] {
-    background-color: #3ccb89;
+    background-color: #128551;
     color: #ffffff;
 }
 
@@ -4359,7 +4359,7 @@ button[type="submit"],
     bottom: 0;
     width: 40px;
     height: 2px;
-    background-color: #3ccb89;
+    background-color: #128551;
 }
 
 .error-404 .widget ul {
@@ -4384,7 +4384,7 @@ button[type="submit"],
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: #6b7480;
+    color: #4c5a6d;
 }
 
 .nav-links .nav-title {
@@ -4498,7 +4498,7 @@ h1.entry-title {
 }
 
 .entry-cats a {
-    color: #3ccb89;
+    color: #128551;
 }
 
 .entry-cats .sep {
@@ -5185,5 +5185,82 @@ p.site-title a {
  */
 .site-description {
     color: #7c8a9a;
+}
+
+
+/* ==========================================================================
+   Free Blog 1.1.1 - sticky navigation
+   ==========================================================================
+
+   .affix now goes on .main-menu, the full-width wrapper, rather than on the
+   <nav> inside the centred container. The old rules were written for the nav
+   and are neutralised here: 41px and 45px of link padding nearly doubled the
+   height of the bar at the moment it stuck.
+   ========================================================================== */
+
+.main-menu.affix {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e7ecf2;
+    -webkit-box-shadow: 0 1px 3px rgba(17, 27, 43, 0.08);
+    box-shadow: 0 1px 3px rgba(17, 27, 43, 0.08);
+}
+
+/* Keeps the bar's height identical whether it is stuck or not. */
+.main-menu.affix .navbar-nav li a,
+.main-menu.affix .navbar-nav > li:last-child a {
+    padding: 15px;
+    margin: 0;
+}
+
+.main-menu.affix .navbar-nav li ul.sub-menu a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/*
+ * The placeholder the script inserts. It has no height until the bar sticks,
+ * at which point it takes exactly the height the bar left behind so the page
+ * does not jump.
+ */
+.main-menu-placeholder {
+    width: 100%;
+    float: left;
+    clear: both;
+}
+
+/*
+ * The admin bar is itself fixed at the top of the window for a logged-in user,
+ * so the sticky bar has to start below it rather than underneath it.
+ */
+.admin-bar .main-menu.affix {
+    top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+
+    .admin-bar .main-menu.affix {
+        top: 46px;
+    }
+}
+
+/*
+ * Below the horizontal-menu breakpoint the bar does not stick at all - the
+ * script returns early - so nothing here should apply.
+ */
+@media (max-width: 767px) {
+
+    .main-menu.affix {
+        position: static !important;
+    }
+
+    .main-menu-placeholder {
+        display: none;
+    }
 }
 

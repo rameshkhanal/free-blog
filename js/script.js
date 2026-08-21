@@ -5,14 +5,41 @@
     // loaded without wp_localize_script having run.
     var freeBlogMenuText = ( window.freeBlogL10n && window.freeBlogL10n.expandMenu ) || 'Expand child menu';
 	
-	$(window).on('scroll', function(){
-		if($(this).scrollTop() > 100){
-			 $('.main-navigation').addClass('affix');
-		}
-			else{
-				$('.main-navigation').removeClass('affix');
+	var freeBlogStickyBar = $('.main-menu');
+
+	if ( freeBlogStickyBar.length ) {
+
+		var freeBlogSpacer = $('<div class="main-menu-placeholder" aria-hidden="true"></div>')
+			.insertAfter( freeBlogStickyBar );
+
+		var freeBlogSync = function () {
+
+			// A fixed bar costs too much of a phone screen to be worth it, and
+			// the collapsed menu opens downwards from where it sits.
+			if ( $(window).width() < 768 ) {
+				freeBlogStickyBar.removeClass('affix');
+				freeBlogSpacer.height(0);
+				return;
 			}
-	});
+
+			// The placeholder sits where the bar was, in both states, so the
+			// threshold never moves when the class is added or removed.
+			var stickPoint = freeBlogSpacer.offset().top - freeBlogSpacer.height();
+
+			if ( $(window).scrollTop() > stickPoint ) {
+				if ( ! freeBlogStickyBar.hasClass('affix') ) {
+					freeBlogSpacer.height( freeBlogStickyBar.outerHeight() );
+					freeBlogStickyBar.addClass('affix');
+				}
+			} else if ( freeBlogStickyBar.hasClass('affix') ) {
+				freeBlogStickyBar.removeClass('affix');
+				freeBlogSpacer.height(0);
+			}
+		};
+
+		$(window).on('scroll resize', freeBlogSync);
+		freeBlogSync();
+	}
 	
 	 //Submenu Dropdown Toggle
     if($('.top-nav li.menu-item-has-children').length){

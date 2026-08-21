@@ -18,7 +18,7 @@ if ( !function_exists('free_blog_default_theme_options_values') ) :
 
         $default_theme_options = array(
             /*Top Header Section Default Value*/
-            'free_blog_primary_color' => '#3ccb89',
+            'free_blog_primary_color' => '#128551',
 
         	/*Top Header Section Default Value*/
         	'free_blog_enable_top_header'=>0,
