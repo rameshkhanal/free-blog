@@ -1,6 +1,6 @@
 === Free Blog ===
 
-Contributors: akithemes
+Contributors: templatesell
 Theme URI: https://www.templatesell.com/item/free-blog-plus/
 Author URI: https://www.templatesell.com/
 Tags: blog, news, custom-background, custom-header, one-column, two-columns, three-columns, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, post-formats
@@ -11,11 +11,11 @@ Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Free Blog is simple, clean and elegant Free WordPress Theme for your blog site. This theme comes with a slider, a masonry layout, a double column layout, copyright options, social options and many more features. In addition this theme has added custom widget for recent post, author and social menu. Use this awesome WordPress theme for your blog site, you will never look for alternative. Demo: http://demo.akithemes.com/free-blog
+Free Blog is simple, clean and elegant Free WordPress Theme for your blog site. This theme comes with a slider, a masonry layout, a double column layout, copyright options, social options and many more features. In addition this theme has added custom widget for recent post, author and social menu. Use this awesome WordPress theme for your blog site, you will never look for alternative. Demo: https://templatesell.net/free-blog/
 
 == Description ==
 
-Free Blog is simple, clean and elegant Free WordPress Theme for your blog site. This theme comes with a slider, a masonry layout, a double column layout, copyright options, social options and many more features. In addition this theme has added custom widget for recent post, author and social menu. Use this awesome WordPress theme for your blog site, you will never look for alternative. Demo: http://demo.akithemes.com/free-blog
+Free Blog is simple, clean and elegant Free WordPress Theme for your blog site. This theme comes with a slider, a masonry layout, a double column layout, copyright options, social options and many more features. In addition this theme has added custom widget for recent post, author and social menu. Use this awesome WordPress theme for your blog site, you will never look for alternative. Demo: https://templatesell.net/free-blog/
 
 == Installation ==
 
@@ -126,7 +126,7 @@ Other
 
 == Credits ==
 
-Free Blog is free WordPress theme by, Aki Themes.
+Free Blog is free WordPress theme by, Template Sell.
 Free Blog is distributed under the terms of the GNU GPL v2 or later.
 
 

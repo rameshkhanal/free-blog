@@ -56,11 +56,11 @@ if ( is_active_sidebar('footer-1') || is_active_sidebar('footer-2') || is_active
 				</a>
 				<span class="sep"> | </span>
 				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
 				printf(
+					/* translators: 1: Theme name, 2: Theme author. */
 					esc_html__( 'Theme: %1$s by %2$s.', 'free-blog' ),
 					'Free Blog',
-					'<a href="' . esc_url( 'https://www.akithemes.com/' ) . '">Aki Themes</a>'
+					'<a href="' . esc_url( 'https://www.templatesell.com/' ) . '">Template Sell</a>'
 				);
 				?>
 			</div>
