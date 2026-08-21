@@ -1,0 +1,23 @@
+a.free-blog-install-plugins.button {
+    background: #44ca34;
+    color: #fff;
+    padding: 6px 15px;
+    border-color: #44ca34;
+    font-size: 15px;
+}
+a.free-blog-install-plugins.button:hover {
+    background: #51ec3e;
+    border-color: #51ec3e;
+}
+.updated.notice.is-dismissible>p:nth-child(1) {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#message2.updated.notice.is-dismissible>p {
+    font-size: 14px;
+}
+
+p.plugin-notice {
+    font-size: 17px!important;
+}
