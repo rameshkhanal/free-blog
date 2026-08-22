@@ -57,6 +57,9 @@ Fixed
 * Every row in the sidebar drew two hairlines and stacked two lots of padding, because the 2018 rule for classic widget links and the new rule for block widget rows both applied. Rows are 47px now, not 70px, with one line each
 * The sidebar search button turned grey when WordPress moved widgets to blocks: the accent was only ever applied to the classic widget's input, not to the block widget's button
 * Back to top was a 3px/14px/7px/13px blob around a single chevron; it is a 44px square now
+* The post-format badge marked every ordinary post with a bookmark, since "format-standard" is the class WordPress gives a post that has no format. It is now shown only for posts that have one
+* The badge also floated in the white space above the headline and had no gutter, so a long title ran underneath it. It sits level with the category kicker now, and the headline stops short of it
+* A link post and a status post were the only formats to show no badge at all
 
 Performance
 * Fonts are served from the theme instead of being fetched from Google on every page view

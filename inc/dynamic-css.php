@@ -90,7 +90,6 @@ if ( ! function_exists( 'free_blog_accent_selectors' ) ) :
 	function free_blog_accent_selectors() {
 
 		$post_format_marks = array(
-			'article.format-standard .entry-header::after',
 			'article.format-image .entry-header::after',
 			'article.hentry.sticky .entry-header::after',
 			'article.format-video .entry-header::after',
@@ -100,6 +99,7 @@ if ( ! function_exists( 'free_blog_accent_selectors' ) ) :
 			'article.format-chat .entry-header::after',
 			'article.format-aside .entry-header::after',
 			'article.format-link .entry-header::after',
+			'article.format-status .entry-header::after',
 		);
 
 		$selectors = array(

@@ -1130,7 +1130,6 @@ object {
 }
 /*Post Format Style*/
 
-article.format-standard .entry-header::after,
 article.format-image .entry-header::after,
 article.hentry.sticky .entry-header::after,
 article.format-video .entry-header::after,
@@ -1139,25 +1138,23 @@ article.format-audio .entry-header::after,
 article.format-quote .entry-header::after,
 article.format-chat .entry-header::after,
 article.format-aside .entry-header::after,
+article.format-status .entry-header::after,
 article.format-link .entry-header::after{
-    font-size: 20px;
+    font-size: 13px;
     color: #128551;
     display: inline-block;
     font-family: "fontawesome";
-    right: 16px;
+    right: 30px;
     position: absolute;
     text-align: center;
-    top: 0;
-    width: 35px;
+    top: 26px;
+    width: 32px;
     border: 1px solid #128551;
     border-radius: 100%;
-    height: 35px;
-    line-height: 35px;
+    height: 32px;
+    line-height: 30px;
 }
 
-article.format-standard .entry-header::after{
-    content: "\f02e";
-}
 article.format-image .entry-header::after {
     content: "\f030";
 }
@@ -1181,6 +1178,12 @@ article.format-chat .entry-header::after{
 }
 article.format-aside .entry-header::after{
     content: "\f0a5";
+}
+article.format-link .entry-header::after{
+    content: "\f0c1";
+}
+article.format-status .entry-header::after{
+    content: "\f24a";
 }
 
 /*Custom CSS*/
@@ -4606,11 +4609,20 @@ h1.entry-title {
 }
 
 /*
- * The post-format badge. It was a 40px circle level with the top of the card;
- * at this size it reads as a mark on the headline rather than a button.
+ * A post that carries a format badge needs a gutter for it, or the headline
+ * runs underneath. Only these formats draw one - an ordinary post does not.
  */
-article.hentry .entry-header::after {
-    font-size: 13px;
+article.format-image .entry-header,
+article.hentry.sticky .entry-header,
+article.format-video .entry-header,
+article.format-gallery .entry-header,
+article.format-audio .entry-header,
+article.format-quote .entry-header,
+article.format-chat .entry-header,
+article.format-aside .entry-header,
+article.format-status .entry-header,
+article.format-link .entry-header {
+    padding-right: 74px;
 }
 
 /* ------------------------------------------------------------- 4. Controls */
@@ -4926,6 +4938,24 @@ p.site-title a {
     .site-main article .entry-footer {
         padding-left: 20px;
         padding-right: 20px;
+    }
+
+    article.hentry.sticky .entry-header::after,
+    article.hentry .entry-header::after {
+        right: 20px;
+    }
+
+    article.format-image .entry-header,
+    article.hentry.sticky .entry-header,
+    article.format-video .entry-header,
+    article.format-gallery .entry-header,
+    article.format-audio .entry-header,
+    article.format-quote .entry-header,
+    article.format-chat .entry-header,
+    article.format-aside .entry-header,
+    article.format-status .entry-header,
+    article.format-link .entry-header {
+        padding-right: 64px;
     }
 
     h1.site-title,
