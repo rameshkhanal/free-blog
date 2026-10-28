@@ -8,8 +8,7 @@
  */
 
 /**
- * The theme version, used to cache-bust every stylesheet and script the
- * theme owns. Keep it in step with the Version: header in style.css.
+ * Theme version, used for asset cache busting.
  */
 if ( ! defined( 'FREE_BLOG_VERSION' ) ) {
 	define( 'FREE_BLOG_VERSION', '1.1.1' );
@@ -51,8 +50,7 @@ if ( ! function_exists( 'free_blog_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// Sizes the templates actually ask for. Without these the slider and
-		// the related posts serve full-size originals.
+		// Image sizes used by the slider and related posts.
 		add_image_size( 'free-blog-slider-image', 1170, 600, true );
 		add_image_size( 'free-blog-related-image', 370, 220, true );
 
@@ -122,8 +120,7 @@ if ( ! function_exists( 'free_blog_setup' ) ) :
 		// Use the core block stylesheet as the base for block appearance.
 		add_theme_support( 'wp-block-styles' );
 
-		// Make the editor render posts the way the front end will. The font
-		// sheet has to come along or the editor falls back to a system stack.
+		// Editor styles, including the font sheet.
 		add_editor_style( array( 'assets/fonts/fonts.css', 'css/editor-styles.css' ) );
 	}
 endif;
@@ -219,18 +216,13 @@ function free_blog_scripts() {
 
 	global $free_blog_theme_options;
 
-	/*
-	 * The theme's own typefaces are served from the theme directory, so a
-	 * default installation makes no third-party request and no visitor IP
-	 * reaches a font CDN. The Font URL field in the customizer still works
-	 * for anyone who wants to load an additional family.
-	 */
+// Locally hosted webfonts.
 	wp_enqueue_style( 'free-blog-fonts', get_template_directory_uri() . '/assets/fonts/fonts.css', array(), FREE_BLOG_VERSION );
 
 	$free_blog_name_font_url = esc_url( $free_blog_theme_options['free-blog-font-family-url'] );
 
 	if ( '' !== $free_blog_name_font_url ) {
-		// A remote stylesheet must not carry the theme version as a query arg.
+		// No version arg on the remote stylesheet.
 		wp_enqueue_style( 'free-blog-googleapis', $free_blog_name_font_url, array(), null );
 	}
 
@@ -258,11 +250,7 @@ function free_blog_scripts() {
 
 	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.js', array( 'jquery' ), '1.8.0', true );
 
-	/*
-	 * script.js, custom.js and the sticky sidebar are all written against
-	 * jQuery but used to declare no dependency on it; they only worked
-	 * because Bootstrap happened to pull jQuery into the head first.
-	 */
+// These scripts need jQuery as a dependency.
 	wp_enqueue_script( 'free-blog-script', get_template_directory_uri() . '/js/script.js', array( 'jquery' ), FREE_BLOG_VERSION, true );
 
 	wp_localize_script(

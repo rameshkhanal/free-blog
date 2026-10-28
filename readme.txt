@@ -31,61 +31,47 @@ Free Blog includes support for Infinite Scroll in Jetpack.
 
 == Changelog ==
 = 1.1.1 - August 21 2026 =
-
-Design
-* Refreshed the whole design: a cool off-white page, white panels with a hairline edge and a small radius, and one type scale from the kicker to the headline
-* Body text is now 16px with a 1.75 line height; headings are set in a darker, higher-contrast navy
-* A post's categories now appear as a coloured kicker above the headline instead of buried under the excerpt
-* Post thumbnails are cropped to a single 16:9 ratio, so a portrait photograph and a landscape one make the same card
-* Pagination is a row of circles with the current page filled in
-* Sidebar and footer widgets sit in their own panels, with a shorter, wider-spaced heading rule
-* The footer is no longer pure black under a pale page; it is the same family as everything above it
-* The 404 page now uses the same panel and headings as the rest of the site instead of browser defaults
-* Related posts are laid out as two equal columns with one image ratio
-* The slider caption is legible whether or not the post has a featured image, and "Read More" is a button
-* The default accent is a deeper green. The old #3ccb89 measured 2.08:1 against white as text and as a background for white text alike, so every link, category, tag and the filled pagination chip was below the readable minimum. Same hue, 4.67:1
-* The sticky header works for the first time, and now sticks the menu bar rather than the nav inside it: full width, unchanged height, a placeholder so the page does not jump, and clear of the admin bar
-
-Fixed
-* The PHP 8.2 "Creation of dynamic property" deprecation that was logged on every single page view
-* An unclosed div in the numeric pagination that nested the rest of the page inside it
-* The thumbnail strip under the header slider, which was pushed off the left edge of the screen
-* Related posts appeared or vanished according to an unrelated category count; the query decides now
-* Parent menu items could not be followed: their default was prevented on every screen size
-* The excerpt filter returned nothing in the admin, leaving the editor with no ellipsis
-* The tag and category counts in the sidebar, and the widget headings, had not been styled since WordPress moved widgets to blocks in 5.8
-* Every row in the sidebar drew two hairlines and stacked two lots of padding, because the 2018 rule for classic widget links and the new rule for block widget rows both applied. Rows are 47px now, not 70px, with one line each
-* The sidebar search button turned grey when WordPress moved widgets to blocks: the accent was only ever applied to the classic widget's input, not to the block widget's button
-* Back to top was a 3px/14px/7px/13px blob around a single chevron; it is a 44px square now
-* The post-format badge marked every ordinary post with a bookmark, since "format-standard" is the class WordPress gives a post that has no format. It is now shown only for posts that have one
-* The badge also floated in the white space above the headline and had no gutter, so a long title ran underneath it. It sits level with the category kicker now, and the headline stops short of it
-* A link post and a status post were the only formats to show no badge at all
-
-Performance
-* Fonts are served from the theme instead of being fetched from Google on every page view
-* The slider ran the same database query twice on every front page load; it runs once
-* Registered the slider and related-post image sizes the templates were already asking for, instead of serving full-size originals
-* The widget helper script and the whole media library modal no longer load on every admin screen
-* Corrected the versions reported for Bootstrap, Font Awesome, Slick and Theia so caches bust when they should
-
-Accessibility
-* Submenus now open on keyboard focus, not on hover alone
-* The menu toggles, the search toggle and "View More" are real buttons with names and states
-* Visible keyboard focus, a working skip link, and a reduced-motion preference
-* Post navigation links say which way they go
-* Raised the contrast of every button and of the post meta, which failed at under 2:1
-
-Editor
-* Added editor styles so writing a post looks like reading one
-* Added three block patterns and three block styles
-* Added support for align-wide, responsive embeds and wp-block-styles
-
-Other
-* The Primary Color option now repaints every element that uses the accent, not a fifth of them
-* Hardened the plugin-install AJAX handler: input is sanitised and the capability is checked first
-* Added a languages directory and a POT file
-* The default footer copyright no longer has a year baked into a translatable string
-* Tested with WordPress 7.1 and PHP 8.3
+* Changed: refreshed design (off-white page, white panels, one type scale).
+* Changed: body text is 16px with a 1.75 line height.
+* Changed: post categories show as a kicker above the headline.
+* Changed: thumbnails are cropped to 16:9.
+* Changed: pagination is a row of circles.
+* Changed: sidebar and footer widgets sit in their own panels.
+* Changed: footer is no longer pure black.
+* Changed: 404 page uses the same panel and headings as the rest of the site.
+* Changed: related posts use two equal columns.
+* Changed: slider caption is readable without a featured image.
+* Changed: default accent colour is a deeper green for contrast.
+* Fixed: sticky header now works.
+* Fixed: PHP 8.2 dynamic property deprecation.
+* Fixed: unclosed div in the numeric pagination.
+* Fixed: thumbnail strip under the slider pushed off screen.
+* Fixed: related posts depended on an unrelated category count.
+* Fixed: parent menu items could not be followed.
+* Fixed: excerpt filter returned nothing in the admin.
+* Fixed: sidebar counts and widget headings not styled for block widgets.
+* Fixed: doubled lines and padding on sidebar rows.
+* Fixed: sidebar search button was grey.
+* Fixed: back to top button size.
+* Fixed: post-format badge shown on ordinary posts, and its position.
+* Fixed: link and status posts had no badge.
+* Changed: fonts are served from the theme, not Google.
+* Changed: slider query runs once.
+* Added: slider and related post image sizes.
+* Changed: widget helper script loads only on widget screens.
+* Fixed: version numbers for Bootstrap, Font Awesome, Slick and Theia.
+* Fixed: submenus open on keyboard focus.
+* Changed: menu toggles, search toggle and View More are real buttons.
+* Added: visible keyboard focus, skip link and reduced-motion support.
+* Changed: post navigation links are labelled.
+* Fixed: button and post meta contrast.
+* Added: editor styles, three block patterns and three block styles.
+* Added: align-wide, responsive embeds and wp-block-styles support.
+* Fixed: Primary Color option now applies to every accent element.
+* Security: plugin-install AJAX handler sanitises input and checks the capability first.
+* Added: languages directory and POT file.
+* Fixed: default footer copyright had a year in a translatable string.
+* Tested with WP 7.1 and PHP 8.3
 
 = 1.1.0 - September 08 2022 =
 * Fixed customizer issue

@@ -2020,7 +2020,7 @@ blockquote cite {
     letter-spacing: 0.5px;
 }
 
-/* The date is set in grey by the design refresh layer; see the note there. */
+/* Date colour, see the card meta rules. */
 .entry-meta .posted-on a {
     margin: 0 7px;
 }
@@ -2377,9 +2377,7 @@ table>thead>tr>th {
     display: block;
 }
 
-/*
- * White captions have to survive a bright photograph as well as a dark one.
- */
+/* White captions stay readable on bright photos. */
 .header-slider .slider-items .img-holder:after {
     content: "";
     position: absolute;
@@ -2435,10 +2433,7 @@ bottom: 0;
     margin-top: -10px;
 }
 
-/*
- * Deliberately empty of sizing: slick sets the track width and transform
- * itself, and overriding one without the other moves the strip off-screen.
- */
+/* No sizing here, slick sets the track width and transform. */
 .header-slider-thumbnail .slick-track {
     display: block;
 }
@@ -3945,17 +3940,9 @@ PAGE HEADER
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - controls, focus and blocks
-   ========================================================================== */
+/* Free Blog 1.1.1 - controls, focus and blocks */
 
-/*
- * Three controls in this theme were styled as text or as divs and have now been
- * given the elements they always behaved like - a search toggle, a submenu
- * toggle and the "View More" button. A button carries a browser default border,
- * background and font that would show through the existing styling, so each one
- * is reset back to what the design already draws.
- */
+/* Reset button defaults on the search toggle, submenu toggle and View More. */
 .search-wrapper .search-toggle {
     display: block;
     width: 100%;
@@ -3984,20 +3971,13 @@ button.show-more {
     cursor: pointer;
 }
 
-/*
- * The "Read More" control was #bababa on #f5f5f5 - a contrast ratio of about
- * 1.9:1, where the minimum for text is 4.5:1. It reads as a disabled button
- * rather than the main call to action on every post in the list.
- */
+/* Read More button colours. */
 .read-more a {
     background-color: #eceef0;
     color: #454f5c;
 }
 
-/*
- * Post meta was #bfbfbf on white, which is 2.2:1. Dates and author names are
- * small and uppercase, which makes low contrast worse, not better.
- */
+/* Post meta colour. */
 .entry-meta,
 .entry-footer,
 .related-date,
@@ -4006,13 +3986,7 @@ button.show-more {
     color: #6b7480;
 }
 
-/*
- * Keyboard focus was switched off wholesale by "outline: none" on every link,
- * which leaves someone navigating by keyboard with no idea where they are. The
- * accent-coloured glow that goes with this comes from the customizer, so it
- * follows whatever colour the site owner picked; this is the outline underneath
- * it, which stays visible on any background.
- */
+/* Keyboard focus outline. */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -4041,11 +4015,7 @@ textarea:focus-visible,
     height: auto;
 }
 
-/*
- * Submenus opened on :hover alone, so a keyboard could reach a parent item and
- * nothing underneath it. .focus is set by js/navigation.js for browsers without
- * :focus-within.
- */
+/* Open submenus on keyboard focus (.focus is set in js/navigation.js). */
 .menu-item-has-children:focus-within > .sub-menu,
 .menu-item-has-children.focus > .sub-menu {
     visibility: visible;
@@ -4059,12 +4029,7 @@ textarea:focus-visible,
     opacity: 1;
 }
 
-/*
- * Since WordPress 5.8 a widget is a block, and a block widget's heading is an
- * <h2 class="wp-block-heading"> - not the <h2 class="widget-title"> the theme
- * has been styling since 2018. Every sidebar and footer heading on a modern
- * install has been falling back to the browser default.
- */
+/* Block widget headings. */
 .footer-top-box .widget_block h2,
 #secondary .widget_block h2,
 #left-sidebar .widget_block h2,
@@ -4150,10 +4115,7 @@ textarea:focus-visible,
     padding: 8px 0;
 }
 
-/*
- * Someone who has asked their operating system to reduce motion should not be
- * given a five hundred millisecond slide on every menu and a fading carousel.
- */
+/* Reduced motion. */
 @media (prefers-reduced-motion: reduce) {
 
     *,
@@ -4167,16 +4129,9 @@ textarea:focus-visible,
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - buttons and related posts
-   ========================================================================== */
+/* Free Blog 1.1.1 - buttons and related posts */
 
-/*
- * Every button in the theme was #bababa on #f5f5f5 - about 1.9:1, where 4.5:1
- * is the floor for text. "Post Comment", "Read More", "View More" and the post
- * navigation all read as disabled controls. The hover state already turns the
- * accent colour, so this is only about the resting state being legible.
- */
+/* Button resting colours. */
 .button,
 .show-more,
 button.show-more,
@@ -4199,10 +4154,7 @@ button[type="submit"],
     text-transform: uppercase;
 }
 
-/*
- * The comment form's submit is the one control on the page a reader is being
- * asked to press, so it gets the accent rather than the grey.
- */
+/* Comment form submit button. */
 .comment-form input[type="submit"] {
     background-color: #128551;
     color: #ffffff;
@@ -4213,21 +4165,8 @@ button[type="submit"],
     color: #ffffff;
 }
 
-/*
- * Related posts.
- *
- * .featured-desc was floated at 50% width while the thumbnail beside it had no
- * rules at all, so an entry with a picture and an entry without laid out
- * differently and a portrait image ran to whatever height it liked. Two equal
- * columns, one image ratio, and an entry with no picture simply starts with its
- * headline instead of leaving a hole.
- */
-/*
- * The list carries the .clear class, whose :before and :after
- * clearfix rules become grid items in a grid container - two invisible cells
- * that pushed the first entry into the second column and the second entry onto
- * a row of its own. A grid needs no clearfix.
- */
+/* Related posts. */
+/* No clearfix in a grid. */
 .related-post-entries:before,
 .related-post-entries:after {
     content: none;
@@ -4282,12 +4221,7 @@ button[type="submit"],
     }
 }
 
-/*
- * The slick arrows on the thumbnail strip sat half outside the viewport at each
- * edge, because slick positions them relative to a container the strip does not
- * give them. They are a keyboard route through the slides, so they are worth
- * keeping - just inside the strip, where they can be seen.
- */
+/* Keep the slick arrows inside the thumbnail strip. */
 .header-slider-thumbnail .slick-prev,
 .header-slider-thumbnail .slick-next {
     z-index: 20;
@@ -4310,15 +4244,9 @@ button[type="submit"],
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - 404, post navigation, slider on small screens
-   ========================================================================== */
+/* Free Blog 1.1.1 - 404, post navigation, slider on small screens */
 
-/*
- * Every other template puts its content on a white panel. The 404 page sat
- * directly on the grey page background with browser-default headings, so the
- * one page a visitor reaches by accident was the one that looked broken.
- */
+/* 404 page panel. */
 .error-404 {
     background-color: #ffffff;
     margin-top: 30px;
@@ -4369,10 +4297,7 @@ button[type="submit"],
     padding: 8px 0;
 }
 
-/*
- * Post navigation. The two links were a pair of post titles in grey boxes with
- * nothing to say which way either one went; single.php now labels them.
- */
+/* Post navigation. */
 .nav-links .nav-subtitle {
     display: block;
     margin-bottom: 4px;
@@ -4389,33 +4314,14 @@ button[type="submit"],
     text-transform: none;
 }
 
-/*
- * Slick draws its arrows over the first and last tab. Keep the headline clear
- * of them rather than moving the arrows somewhere they cannot be found.
- */
+/* Keep the headline clear of the slick arrows. */
 .header-slider-thumbnail .slick-slide {
     padding-left: 52px;
     padding-right: 52px;
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - design refresh
-   ==========================================================================
-
-   The theme has looked the same since 2018: 13px body text, near-black
-   headings on a flat grey field, buttons in light grey on lighter grey, and
-   every panel separated by a three-pixel shadow you have to look for.
-
-   This layer is a single pass over the whole surface, in the direction the
-   templatesell blog templates have moved since: a cool off-white page, white
-   panels with a hairline edge and a small radius, one type scale from the
-   kicker to the headline, and colour used only where it means something - the
-   section a post belongs to, the control a reader is meant to press.
-
-   Nothing here changes what the templates output. Every accent below is also
-   registered in inc/dynamic-css.php, so the Primary Color option repaints it.
-   ========================================================================== */
+/* Free Blog 1.1.1 - design refresh */
 
 /* --------------------------------------------------------------- 1. Canvas */
 
@@ -4480,10 +4386,7 @@ h1.entry-title {
     text-transform: uppercase;
 }
 
-/*
- * The kicker. Small, spaced capitals in the accent colour, sitting above the
- * headline where a reader looks first.
- */
+/* Kicker above the headline. */
 .entry-cats {
     margin-bottom: 10px;
     font-size: 11px;
@@ -4501,9 +4404,7 @@ h1.entry-title {
     color: #c3ccd6;
 }
 
-/*
- * Date and author. One quiet line under the headline, not a second headline.
- */
+/* Date and author line. */
 .entry-meta {
     color: #93a0b0;
     font-size: 12px;
@@ -4549,10 +4450,7 @@ h1.entry-title {
     margin: 0;
 }
 
-/*
- * The thumbnail runs the full width of the card and is cropped to one ratio,
- * so a portrait photograph and a landscape one produce the same card.
- */
+/* Card thumbnail, one crop ratio. */
 .site-main article .post-thumbnail {
     display: block;
     margin: 0;
@@ -4581,11 +4479,7 @@ h1.entry-title {
     aspect-ratio: auto;
 }
 
-/*
- * The excerpt and the footer are two different kinds of information, so the
- * footer sits in its own tinted band at the foot of the card rather than
- * floating in the same white space as the writing.
- */
+/* Card footer band. */
 .entry-footer,
 .site-main article .read-more {
     padding: 0 30px;
@@ -4608,10 +4502,7 @@ h1.entry-title {
     margin-top: 18px;
 }
 
-/*
- * A post that carries a format badge needs a gutter for it, or the headline
- * runs underneath. Only these formats draw one - an ordinary post does not.
- */
+/* Gutter for the post-format badge. */
 article.format-image .entry-header,
 article.hentry.sticky .entry-header,
 article.format-video .entry-header,
@@ -4687,10 +4578,7 @@ textarea:focus {
     color: #111b2b;
 }
 
-/*
- * Pagination as a row of circles, with the page you are on filled in. The
- * numbers were previously indistinguishable from body text.
- */
+/* Pagination as circles. */
 .pagination {
     display: flex;
     flex-wrap: wrap;
@@ -4842,11 +4730,7 @@ p.site-title a {
 
 /* --------------------------------------------------------------- 9. Footer */
 
-/*
- * Pure black under a pale grey page was the single hardest edge on the site.
- * The footer is now the same family as everything above it, marked off by a
- * rule rather than by a change of medium.
- */
+/* Footer. */
 .footer-wrap {
     background-color: #ffffff;
     border-top: 1px solid #e7ecf2;
@@ -4973,16 +4857,9 @@ p.site-title a {
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - design refresh, second pass
-   ========================================================================== */
+/* Free Blog 1.1.1 - design refresh, second pass */
 
-/*
- * The read-more button and the entry meta are two floats sharing one line, so
- * a background on the meta alone covered the right-hand half of the row and
- * stopped. The rule that separates the writing from the furniture belongs on
- * the bottom of the content instead, where it spans the whole card.
- */
+/* Rule at the bottom of the card content. */
 .site-main article .entry-content {
     padding: 0 30px 22px;
     border-bottom: 1px solid #eef2f6;
@@ -5001,11 +4878,7 @@ p.site-title a {
     padding: 20px 30px 22px;
 }
 
-/*
- * Only one thing on a card is coloured: the section it belongs to. The date and
- * the author are supporting information and read better in grey, which also
- * stops three separate green items competing inside one headline block.
- */
+/* Card meta colours. */
 .entry-meta .posted-on a,
 .entry-header .byline .author a {
     color: #6b7a8c;
@@ -5018,11 +4891,7 @@ p.site-title a {
     color: #111b2b;
 }
 
-/*
- * The block search widget. The theme only ever styled the classic search form,
- * whose submit is an <input>; the block uses a <button>, so none of it applied
- * and the label sat on top of the field.
- */
+/* Block search widget. */
 .wp-block-search__label {
     display: block;
     margin-bottom: 10px;
@@ -5048,11 +4917,7 @@ p.site-title a {
     margin-left: 0;
 }
 
-/*
- * The slider. A slide with no photograph behind it does not need to be as tall
- * as one that has, and the call to action was set as bold text rather than as
- * the button it is.
- */
+/* Slider height and call to action. */
 .header-slider .slider-items {
     min-height: 380px;
 }
@@ -5082,10 +4947,7 @@ p.site-title a {
     color: rgba(255, 255, 255, 0.85);
 }
 
-/*
- * Tags and comment counts in the entry footer sit at the same weight as the
- * kicker but in grey, so the row reads as one line of furniture.
- */
+/* Entry footer tags and comment counts. */
 .entry-footer a {
     color: #6b7a8c;
 }
@@ -5124,19 +4986,9 @@ p.site-title a {
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - design refresh, search widget
-   ========================================================================== */
+/* Free Blog 1.1.1 - design refresh, search widget */
 
-/*
- * The sidebar search was designed around the classic widget: one bordered box
- * with a transparent-bordered field and the submit absolutely positioned inside
- * it. A block search puts its <label> inside that same box, where it landed on
- * top of the field, and uses a <button> the absolute rule never matched.
- *
- * So: the classic treatment stays for the classic widget, and the block form
- * gets a plain label above a field and a button beside it.
- */
+/* Sidebar search, classic and block. */
 #secondary .widget.widget_search form.wp-block-search,
 #left-sidebar .widget.widget_search form.wp-block-search {
     border: 0;
@@ -5144,10 +4996,7 @@ p.site-title a {
     position: static;
 }
 
-/*
- * The theme sets border-color: transparent on the search field at
- * (1,3,2); the block form class carries this past it.
- */
+/* Override the transparent border on the search field. */
 #secondary .widget.widget_search form.wp-block-search input[type="search"],
 #left-sidebar .widget.widget_search form.wp-block-search input[type="search"] {
     height: 44px;
@@ -5168,16 +5017,7 @@ p.site-title a {
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - design refresh, contrast
-   ==========================================================================
-
-   The muted grey the refresh used for supporting text, #93a0b0, measures 2.6:1
-   against white. WCAG asks 4.5:1 for body-sized text and 3:1 for large text,
-   and every one of these is small, uppercase and letter-spaced, which is the
-   hardest case to read, not the easiest. #5f6d80 measures 5.1:1 and still sits
-   a clear step behind the headline colour.
-   ========================================================================== */
+/* Free Blog 1.1.1 - design refresh, contrast */
 
 .entry-meta,
 .site-main article .entry-footer,
@@ -5202,24 +5042,13 @@ p.site-title a {
     color: #8b98a8;
 }
 
-/*
- * The tagline is set at 2.6rem, which counts as large text and so needs 3:1
- * rather than 4.5:1.
- */
+/* Tagline contrast. */
 .site-description {
     color: #7c8a9a;
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - sticky navigation
-   ==========================================================================
-
-   .affix now goes on .main-menu, the full-width wrapper, rather than on the
-   <nav> inside the centred container. The old rules were written for the nav
-   and are neutralised here: 41px and 45px of link padding nearly doubled the
-   height of the bar at the moment it stuck.
-   ========================================================================== */
+/* Free Blog 1.1.1 - sticky navigation */
 
 .main-menu.affix {
     position: fixed !important;
@@ -5246,21 +5075,14 @@ p.site-title a {
     padding-bottom: 10px;
 }
 
-/*
- * The placeholder the script inserts. It has no height until the bar sticks,
- * at which point it takes exactly the height the bar left behind so the page
- * does not jump.
- */
+/* Placeholder inserted by the script. */
 .main-menu-placeholder {
     width: 100%;
     float: left;
     clear: both;
 }
 
-/*
- * The admin bar is itself fixed at the top of the window for a logged-in user,
- * so the sticky bar has to start below it rather than underneath it.
- */
+/* Start below the admin bar. */
 .admin-bar .main-menu.affix {
     top: 32px;
 }
@@ -5272,10 +5094,7 @@ p.site-title a {
     }
 }
 
-/*
- * Below the horizontal-menu breakpoint the bar does not stick at all - the
- * script returns early - so nothing here should apply.
- */
+/* No sticky bar on small screens. */
 @media (max-width: 767px) {
 
     .main-menu.affix {
@@ -5288,23 +5107,7 @@ p.site-title a {
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - sidebar and footer list rows
-   ==========================================================================
-
-   Two rules were landing on the same row.
-
-   The theme has styled "#secondary .widget ul li a" as a block with padding
-   and a bottom border since 2018, for the classic widgets. The block widgets
-   that replaced them in WordPress 5.8 nest that same link inside an <li> which
-   this release also gave padding and a bottom border - so every row in the
-   sidebar drew two hairlines about eleven pixels apart and stood 70px tall
-   where 44px was intended.
-
-   The row is the <li>. The link inside it is a link. The selectors below carry
-   ".widget_block" so they outrank the 2018 rule, which is what the first
-   attempt at this got wrong.
-   ========================================================================== */
+/* Free Blog 1.1.1 - sidebar and footer list rows */
 
 #secondary .widget_block ul li a,
 #left-sidebar .widget_block ul li a,
@@ -5314,11 +5117,7 @@ p.site-title a {
     border: 0;
 }
 
-/*
- * The last row sits directly on the panel's own bottom edge, which is a second
- * line again. The theme removes it for the classic widgets; the block markup
- * needs the same.
- */
+/* Remove the bottom border on the last row. */
 #secondary .widget_block ul > li:last-child,
 #left-sidebar .widget_block ul > li:last-child,
 .footer-top-box .widget_block ul > li:last-child {
@@ -5338,10 +5137,7 @@ p.site-title a {
     padding-bottom: 10px;
 }
 
-/*
- * A recent-comments row is a sentence rather than a single link, so it takes
- * the row treatment from the <li> and nothing from the anchors inside it.
- */
+/* Recent comments rows. */
 #secondary .wp-block-latest-comments__comment,
 #left-sidebar .wp-block-latest-comments__comment,
 .footer-top-box .wp-block-latest-comments__comment {
@@ -5350,16 +5146,7 @@ p.site-title a {
 }
 
 
-/* ==========================================================================
-   Free Blog 1.1.1 - search, reply and back-to-top buttons
-   ==========================================================================
-
-   The sidebar search submit has been accent-coloured since the theme shipped -
-   but only the classic widget's <input type="submit">. The block search widget
-   that replaced it uses a <button>, which fell through to the plain grey used
-   for secondary controls, so the one green button in the sidebar turned grey
-   the moment WordPress switched widgets to blocks.
-   ========================================================================== */
+/* Free Blog 1.1.1 - search, reply and back-to-top buttons */
 
 button.wp-block-search__button {
     color: #ffffff;
@@ -5377,10 +5164,7 @@ button.wp-block-search__button:focus {
     color: #ffffff;
 }
 
-/*
- * Reply was a thin box of default black text, the only control on the page not
- * wearing the theme's button.
- */
+/* Reply link as a button. */
 .comment-reply-link {
     display: inline-block;
     padding: 8px 16px;
@@ -5398,11 +5182,7 @@ button.wp-block-search__button:focus {
     border-color: #b9c6d4;
 }
 
-/*
- * Back to top. The padding was 3px 14px 7px 13px - four different values, none
- * of them square - around a single chevron, which made a target smaller than a
- * fingertip and visibly off-centre.
- */
+/* Back to top button. */
 #toTop {
     display: inline-block;
     width: 44px;

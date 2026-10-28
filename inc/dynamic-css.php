@@ -9,11 +9,7 @@
 
 if ( ! function_exists( 'free_blog_hex_to_rgba' ) ) :
 	/**
-	 * Turn a hex colour into an rgba() string.
-	 *
-	 * Used for the tints the accent needs - a focus ring, a soft fill - which
-	 * would otherwise have to be hard-coded and so would stop following the
-	 * colour the site owner picked.
+	 * Convert a hex colour to an rgba() string.
 	 *
 	 * @param string $hex   Hex colour, with or without the leading hash.
 	 * @param float  $alpha Opacity between 0 and 1.
@@ -45,9 +41,6 @@ if ( ! function_exists( 'free_blog_shade' ) ) :
 	/**
 	 * Darken a hex colour by a proportion.
 	 *
-	 * Used for the hover state of the accent-filled controls, so that it
-	 * follows the customizer rather than being fixed in the stylesheet.
-	 *
 	 * @param string $hex    Hex colour, with or without the leading hash.
 	 * @param float  $amount How far to move toward black, between 0 and 1.
 	 * @return string A hex colour, or an empty string if $hex is not one.
@@ -77,13 +70,7 @@ endif;
 
 if ( ! function_exists( 'free_blog_accent_selectors' ) ) :
 	/**
-	 * Every selector in style.css that is painted with the theme accent.
-	 *
-	 * The accent used to be repainted in twenty-two places while the stylesheet
-	 * hard-codes it in fifty-eight, so changing the colour in the customizer
-	 * left the menu, the site title, the pagination, the buttons, the mobile
-	 * toggle, the slider dots and the blockquote rule all still green. The list
-	 * below is that stylesheet audit, grouped by the property each rule uses.
+	 * Selectors in style.css painted with the theme accent.
 	 *
 	 * @return array Property name => array of selectors.
 	 */
@@ -169,8 +156,7 @@ if ( ! function_exists( 'free_blog_accent_selectors' ) ) :
 				'.comment-form input[type="submit"]',
 				'button.wp-block-search__button',
 
-				// The short rule under every widget heading, in all three widget
-				// areas and in both the classic and the block markup.
+				// The short rule under every widget heading.
 				'#secondary h2.widget-title:after',
 				'#left-sidebar h2.widget-title:after',
 				'.footer-top-box h2.widget-title:after',
@@ -222,9 +208,7 @@ if ( ! function_exists( 'free_blog_dynamic_css' ) ) :
 		$free_blog_font_family   = wp_kses_post( $free_blog_theme_options['free-blog-font-family-name'] );
 		$free_blog_font_size     = absint( $free_blog_theme_options['free-blog-font-paragraph-font-size'] );
 
-		// sanitize_hex_color() returns null for anything that is not a hex
-		// colour, so a value stored by an older version falls back to the
-		// theme default rather than dropping the accent altogether.
+		// Fall back to the default if the stored value is not a hex colour.
 		$free_blog_primary_color = sanitize_hex_color( $free_blog_theme_options['free_blog_primary_color'] );
 
 		if ( null === $free_blog_primary_color ) {
@@ -255,8 +239,7 @@ if ( ! function_exists( 'free_blog_dynamic_css' ) ) :
 				);
 			}
 
-			// The accent-filled controls darken on hover, from the accent itself
-			// rather than from a colour fixed in the stylesheet.
+			// Hover colour for accent-filled controls.
 			$hover = free_blog_shade( $free_blog_primary_color );
 
 			if ( '' !== $hover ) {
@@ -266,8 +249,7 @@ if ( ! function_exists( 'free_blog_dynamic_css' ) ) :
 				);
 			}
 
-			// A keyboard focus ring that stays visible on any accent, sitting on
-			// top of the solid outline the stylesheet draws.
+			// Keyboard focus ring.
 			$ring = free_blog_hex_to_rgba( $free_blog_primary_color, 0.35 );
 
 			if ( '' !== $ring ) {

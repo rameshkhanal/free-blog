@@ -90,9 +90,7 @@ class Free_Blog_Notice_Handler {
 
 		check_ajax_referer( 'free_blog_demo_import_nonce', 'security' );
 
-        // sanitize_key() strips the slashes and dots a slug must never contain,
-        // which is what keeps the concatenated paths below inside the plugins
-        // directory.
+        // sanitize_key() keeps the path inside the plugins directory.
         $slug    = isset( $_POST['slug'] ) ? sanitize_key( wp_unslash( $_POST['slug'] ) ) : '';
         $request = isset( $_POST['request'] ) ? absint( wp_unslash( $_POST['request'] ) ) : 0;
         $plugin  = $slug . '/' . $slug . '.php';
@@ -103,9 +101,7 @@ class Free_Blog_Notice_Handler {
         );
         $status['redirect'] = admin_url( '/themes.php?page=advanced-import&browse=all&at-gsm-hide-notice=welcome' );
 
-        // Nothing below is any of a visitor's business, and the nonce alone does
-        // not establish that: it is printed for every user who loads an admin
-        // screen, including subscribers.
+        // Admin only. The nonce is printed on every admin screen.
         if ( ! current_user_can( 'install_plugins' ) ) {
             $status['errorMessage'] = __( 'Sorry, you are not allowed to install plugins on this site.', 'free-blog' );
             wp_send_json_error( $status );

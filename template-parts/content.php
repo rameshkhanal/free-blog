@@ -45,9 +45,7 @@ $masonry = esc_attr($free_blog_theme_options['free-blog-column-blog-page']);
 	                the_content();
 	            }
 	            elseif( $show_content_from == 'hide' ) {
-	                // Nothing to print: this is the "do not show any content"
-	                // option. It used to call wp_trim_words() and throw the
-	                // result away.
+	                // Nothing to print for the 'no content' option.
 	            }else{
 	            	if ( $show_content_from == 'excerpt' ) {
 	                    the_excerpt();

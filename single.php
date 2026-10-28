@@ -25,8 +25,7 @@ get_header();
 
 				get_template_part( 'template-parts/content', 'single' );
 
-				// Without labels the two links are just two post titles in
-				// grey boxes, with nothing to say which way each one goes.
+				// Labels for the previous and next links.
 				the_post_navigation(
 					array(
 						'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous post', 'free-blog' ) . '</span> <span class="nav-title">%title</span>',

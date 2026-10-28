@@ -1,14 +1,6 @@
 /**
  * Block editor styles.
  *
- * The theme declared no editor styles at all, so writing a post looked nothing
- * like reading one: the editor used its own default serif-free stack at its own
- * sizes, and every judgement about length, emphasis and rhythm made while
- * writing was made against the wrong picture.
- *
- * This mirrors the front end - Raleway throughout, the same heading rhythm, the
- * same quote and caption treatment - rather than restating the whole stylesheet.
- *
  * @package Free_Blog
  */
 

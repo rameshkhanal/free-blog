@@ -133,8 +133,7 @@ function free_blog_layout_body_class($classes)
 if ( !function_exists('free_blog_excerpt_more') ) :
     function free_blog_excerpt_more( $more ) {
         if ( is_admin() ) {
-            // Returning nothing here left the editor with no excerpt ellipsis
-            // at all; the filter has to hand back what it was given.
+            // Hand back the original value.
             return $more;
         }
         return '';
@@ -181,9 +180,7 @@ if ( !function_exists('free_blog_posts_navigation') ) :
         }elseif('numeric' == $free_blog_pagination_option){
             global $wp_query;
             $big = 999999999; // need an unlikely integer
-            // paginate_links() returns null when there is only one page of
-            // results, and passing that to wp_kses_post() is a deprecation on
-            // PHP 8.1 and later.
+            // No pagination when there is only one page.
             $free_blog_links = paginate_links(array(
                 'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
                 'format' => '?paged=%#%',

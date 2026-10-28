@@ -10,11 +10,7 @@ defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'free_blog_register_block_patterns' ) ) :
 	/**
-	 * Register the theme's block patterns.
-	 *
-	 * Registered on init rather than at file scope: touching a translation
-	 * function before init makes WordPress 6.7 and later complain that the
-	 * textdomain was loaded too early.
+	 * Register the theme's block patterns on init.
 	 */
 	function free_blog_register_block_patterns() {
 

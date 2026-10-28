@@ -10,9 +10,6 @@
 if ( ! function_exists( 'free_blog_entry_kicker' ) ) :
 	/**
 	 * Print the post's categories above the headline.
-	 *
-	 * On a single post the entry footer still lists them, so this only runs
-	 * where the headline is competing with other headlines for attention.
 	 */
 	function free_blog_entry_kicker() {
 

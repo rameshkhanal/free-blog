@@ -1,8 +1,7 @@
 (function($) {
     "use strict";
 
-    // Localised in functions.php; falls back to English if the script is
-    // loaded without wp_localize_script having run.
+    // Localised in functions.php, with an English fallback.
     var freeBlogMenuText = ( window.freeBlogL10n && window.freeBlogL10n.expandMenu ) || 'Expand child menu';
 	
 	var freeBlogStickyBar = $('.main-menu');
@@ -14,16 +13,14 @@
 
 		var freeBlogSync = function () {
 
-			// A fixed bar costs too much of a phone screen to be worth it, and
-			// the collapsed menu opens downwards from where it sits.
+			// No fixed bar on phones.
 			if ( $(window).width() < 768 ) {
 				freeBlogStickyBar.removeClass('affix');
 				freeBlogSpacer.height(0);
 				return;
 			}
 
-			// The placeholder sits where the bar was, in both states, so the
-			// threshold never moves when the class is added or removed.
+			// The placeholder keeps the threshold steady.
 			var stickPoint = freeBlogSpacer.offset().top - freeBlogSpacer.height();
 
 			if ( $(window).scrollTop() > stickPoint ) {

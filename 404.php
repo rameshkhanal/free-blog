@@ -25,12 +25,9 @@ get_header();
 					<?php
 					get_search_form();
 
-					// Same heading markup the sidebars register, so the widgets
-					// on this page look like the widgets everywhere else.
+					// Same heading markup as the sidebars.
 					$free_blog_404_widget_args = array(
-						// the_widget() sprintf()s before_widget with the widget
-						// classname as its only argument, so %2$s here is a fatal
-						// ArgumentCountError on PHP 8.
+						// before_widget only gets the classname, so no %2$s (fatal on PHP 8).
 						'before_widget' => '<section class="widget %s">',
 						'after_widget'  => '</section>',
 						'before_title'  => '<h2 class="widget-title">',
